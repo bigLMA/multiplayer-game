@@ -1,5 +1,6 @@
 using UnityEngine;
 using PlayerController.ControllableObject;
+using Interaction;
 
 namespace CookCharacter
 {
@@ -11,7 +12,20 @@ namespace CookCharacter
         [Range(1f, 15f)]
         private float speed = 6.5f;
 
+        [Header("Interaction")]
+        [SerializeField]
+        [Tooltip("How far cook can interact")]
+        [Range(0.1f, 2.3f)]
+        private float interactRange;
+
         private Vector2 direction;
+
+        private Interactor interactor;
+
+        void Awake()
+        {
+            interactor = new(gameObject, interactRange);
+        }
 
         // Update is called once per frame
         void Update()
@@ -25,12 +39,12 @@ namespace CookCharacter
 
         public void OnAltInteract()
         {
-            throw new System.NotImplementedException();
+            interactor.Interact();
         }
 
         public void OnInteract()
         {
-            throw new System.NotImplementedException();
+            interactor.AltInteract();
         }
 
         public void OnMove(Vector2 dir)=>direction = dir;

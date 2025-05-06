@@ -31,12 +31,14 @@ namespace Interaction
         {
             RaycastHit hit;
 
+            // Check in front of controllable object for interactibles
             if(Physics.Raycast(parent.transform.position, parent.transform.position + parent.transform.forward * interactRange, out hit))
             {
                 var newInteractable = hit.collider.gameObject.GetComponent<IInteractable>();
 
                 if(newInteractable != null)
                 {
+                    // Reset interactable and make necessary visual changes
                     interactable.OnNotLook();
 
                     interactable = newInteractable;
