@@ -24,9 +24,13 @@ namespace Interaction
         {
             RaycastHit hit;
 
+            //Debug.DrawLine(gameObject.transform.position + new Vector3(0f, 0.5f), gameObject.transform.position + new Vector3(0f, 0.5f) + gameObject.transform.forward * interactRange, Color.blue);
+
             // Check in front of controllable object for interactibles
-            if(Physics.Raycast(gameObject.transform.position, gameObject.transform.position + gameObject.transform.forward * interactRange, out hit))
+            if(Physics.Raycast(transform.position + Vector3.up * 0.5f, transform.forward + Vector3.up * 0.5f, out hit, interactRange))
             {
+                //print("not raycast");
+
                 var newInteractable = hit.collider.gameObject.GetComponent<IInteractable>();
 
                 if(newInteractable != null)
@@ -50,6 +54,8 @@ namespace Interaction
             }
             else
             {
+                //print("not raycast");
+
                 if (interactable != null)
                 {
                     interactable.OnNotLook();

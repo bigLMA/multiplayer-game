@@ -27,18 +27,22 @@ namespace CookCharacter
             if(direction != Vector2.zero)
             {
                 transform.forward = new Vector3(direction.x, transform.forward.y, direction.y);
-                transform.Translate(0f, 0f, Time.deltaTime * speed);
+
+                if (!Physics.Raycast(transform.position + Vector3.up *0.5f, transform.forward + Vector3.up * 0.5f,0.5f))
+                {
+                    transform.Translate(0f, 0f, Time.deltaTime * speed);
+                }
             }
         }
 
         public void OnAltInteract()
         {
-            interactor.Interact();
+            interactor.AltInteract();
         }
 
         public void OnInteract()
         {
-            interactor.AltInteract();
+            interactor.Interact();
         }
 
         public void OnMove(Vector2 dir)=>direction = dir;
