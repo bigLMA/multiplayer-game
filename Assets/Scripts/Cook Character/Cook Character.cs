@@ -12,19 +12,13 @@ namespace CookCharacter
         [Range(1f, 15f)]
         private float speed = 6.5f;
 
-        [Header("Interaction")]
-        [SerializeField]
-        [Tooltip("How far cook can interact")]
-        [Range(0.1f, 2.3f)]
-        private float interactRange;
-
         private Vector2 direction;
 
         private Interactor interactor;
 
         void Awake()
         {
-            interactor = new(gameObject, interactRange);
+            interactor = GetComponent<Interactor>();
         }
 
         // Update is called once per frame
