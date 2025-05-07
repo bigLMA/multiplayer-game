@@ -32,7 +32,7 @@ namespace Interaction
                 if(newInteractable != null)
                 {
                     // Reset interactable and make necessary visual changes
-                    interactable.OnNotLook();
+                    interactable?.OnNotLook();
 
                     interactable = newInteractable;
                     interactable.OnLook();
