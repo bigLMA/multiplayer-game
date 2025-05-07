@@ -1,31 +1,34 @@
 using Interaction;
 using UnityEngine;
 
-public class CounterVisualInteractable : MonoBehaviour, IInteractable
+namespace Counters
 {
-
-    [Header("Visual switching")]
-    [SerializeField]
-    [Tooltip("Unselected GO")]
-    private GameObject unselected;
-
-    [SerializeField]
-    [Tooltip("Selected GO")]
-    private GameObject selected;
-
-    public virtual void AltInteract(){}
-
-    public virtual void Interact() { }
-
-    public void OnLook()
+    public class CounterVisualInteractable : MonoBehaviour, IInteractable
     {
-        unselected.SetActive(false);
-        selected.SetActive(true);
-    }
 
-    public void OnNotLook()
-    {
-        unselected.SetActive(true);
-        selected.SetActive(false);
+        [Header("Visual switching")]
+        [SerializeField]
+        [Tooltip("Unselected GO")]
+        private GameObject unselected;
+
+        [SerializeField]
+        [Tooltip("Selected GO")]
+        private GameObject selected;
+
+        public virtual void AltInteract() { }
+
+        public virtual void Interact() { }
+
+        public void OnLook()
+        {
+            unselected.SetActive(false);
+            selected.SetActive(true);
+        }
+
+        public void OnNotLook()
+        {
+            unselected.SetActive(true);
+            selected.SetActive(false);
+        }
     }
 }
