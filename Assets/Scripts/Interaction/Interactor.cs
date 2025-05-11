@@ -64,7 +64,7 @@ namespace Interaction
             }
         }
 
-        public void Interact() => interactable?.Interact();
+        public void Interact() => interactable?.Interact(this);
 
         public void AltInteract()=> interactable?.AltInteract();
     }

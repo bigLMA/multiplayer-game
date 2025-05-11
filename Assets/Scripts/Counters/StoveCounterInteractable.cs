@@ -1,12 +1,12 @@
 using UnityEngine;
+using Interaction;
 
 namespace Counters
 {
     public class StoveCounterInteractable : CounterVisualInteractable
     {
-        public override void Interact()
+        public override void Interact(Interactor interactor)
         {
-            base.Interact();
         }
 
         public override void AltInteract()

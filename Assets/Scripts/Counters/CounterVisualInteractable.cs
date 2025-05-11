@@ -17,7 +17,7 @@ namespace Counters
 
         public virtual void AltInteract() { }
 
-        public virtual void Interact() { }
+        public virtual void Interact(Interactor interactor) { }
 
         public virtual void OnLook()
         {

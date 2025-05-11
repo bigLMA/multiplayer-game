@@ -1,4 +1,5 @@
 using UnityEngine;
+using Interaction;
 
 namespace Counters
 {
@@ -27,9 +28,8 @@ namespace Counters
             counterOpener.transform.eulerAngles -= new Vector3(openXAngle, 0f, 0f);
         }
 
-        public override void Interact()
+        public override void Interact(Interactor interactor)
         {
-            base.Interact();
         }
     }
 }

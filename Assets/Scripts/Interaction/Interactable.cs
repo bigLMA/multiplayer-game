@@ -17,9 +17,10 @@
         void OnNotLook();
 
         /// <summary>
-        /// Primary interaction function
+        /// Primary interaction target
         /// </summary>
-        void Interact();
+        /// <param name="interactor">Interactor initiator</param>
+        void Interact(Interactor interactor);
 
         /// <summary>
         /// This function is not neccessary to implement, for interactables with multiple interaction ways

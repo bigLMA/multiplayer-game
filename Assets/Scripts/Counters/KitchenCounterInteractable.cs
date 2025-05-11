@@ -10,7 +10,7 @@ namespace Counters
             print("alt interact");
         }
 
-        public override void Interact()
+        public override void Interact(Interactor interactor)
         {
             print("interact");
         }
