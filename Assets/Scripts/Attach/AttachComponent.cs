@@ -44,8 +44,11 @@ namespace Attach
 
         public void DestroyAttached()
         {
-            Destroy(attachObject);
-            attachObject = null;
+            if(attachObject==null) return;
+
+            var target = attachObject;
+            Detach();
+            Destroy(target);
         }
     }
 }
