@@ -1,5 +1,6 @@
 using UnityEngine;
 using Interaction;
+using Attach;
 
 namespace Counters
 {
@@ -14,6 +15,11 @@ namespace Counters
         [Tooltip("Open X angle")]
         [Range(-10f, -20f)]
         private float openXAngle = -20f;
+
+        [Header("Container")]
+        [SerializeField]
+        [Tooltip("Product cook gets from this container")]
+        private GameObject productPrefab;
 
         public override void OnLook()
         {
@@ -30,6 +36,16 @@ namespace Counters
 
         public override void Interact(Interactor interactor)
         {
+            var attachComponent = interactor.GetComponent<AttachComponent>();
+
+            if(attachComponent!=null)
+            {
+                if(attachComponent.attachObject == null)
+                {
+                    var go =Instantiate(productPrefab);
+                    attachComponent.Attach(go);
+                }
+            }
         }
     }
 }
