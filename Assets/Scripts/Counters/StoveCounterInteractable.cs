@@ -1,5 +1,6 @@
 using UnityEngine;
 using Interaction;
+using Attach;
 
 namespace Counters
 {
@@ -7,6 +8,12 @@ namespace Counters
     {
         public override void Interact(Interactor interactor)
         {
+            var attachComp = GetComponent<IAttach>();
+            var interactorAttachComp = interactor.GetComponent<IAttach>();
+
+            if (attachComp == null || interactorAttachComp == null) return;
+
+            attachComp.Swap(interactorAttachComp);
         }
 
         public override void AltInteract()
