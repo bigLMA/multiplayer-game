@@ -9,5 +9,7 @@ namespace Attach
         void Detach();
 
         void Swap(IAttach target);
+
+        GameObject attachObject { get; }
     }
 }
