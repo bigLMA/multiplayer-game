@@ -10,6 +10,8 @@ namespace Attach
 
         void Swap(IAttach target);
 
+        void DestroyAttached();
+
         GameObject attachObject { get; }
     }
 }

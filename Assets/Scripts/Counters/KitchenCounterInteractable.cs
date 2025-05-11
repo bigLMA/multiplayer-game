@@ -1,3 +1,4 @@
+using Attach;
 using Interaction;
 using UnityEngine;
 
@@ -5,14 +6,14 @@ namespace Counters
 {
     public class KitchenCounterInteractable : CounterVisualInteractable
     {
-        public override void AltInteract()
-        {
-            print("alt interact");
-        }
-
         public override void Interact(Interactor interactor)
         {
-            print("interact");
+            var attachComp = GetComponent<IAttach>();
+            var interactorAttachComp = interactor.GetComponent<IAttach>();
+
+            if (attachComp == null || interactorAttachComp == null) return;
+
+            attachComp.Swap(interactorAttachComp);
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Attach
 {
@@ -16,8 +17,9 @@ namespace Attach
             if(target == null) return;
 
             attachObject = target;
-            attachObject.transform.position = transform.position + attachOffset;
             attachObject.transform.parent = transform;
+            attachObject.transform.position= transform.position;
+            attachObject.transform.localPosition += attachOffset;
         }
 
         public void Detach()

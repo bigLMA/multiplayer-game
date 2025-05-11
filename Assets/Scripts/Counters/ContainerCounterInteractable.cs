@@ -36,7 +36,7 @@ namespace Counters
 
         public override void Interact(Interactor interactor)
         {
-            var attachComponent = interactor.GetComponent<AttachComponent>();
+            var attachComponent = interactor.GetComponent<IAttach>();
 
             if(attachComponent!=null)
             {
