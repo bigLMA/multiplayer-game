@@ -19,13 +19,13 @@ namespace Counters
 
         public virtual void Interact() { }
 
-        public void OnLook()
+        public virtual void OnLook()
         {
             unselected.SetActive(false);
             selected.SetActive(true);
         }
 
-        public void OnNotLook()
+        public virtual void OnNotLook()
         {
             unselected.SetActive(true);
             selected.SetActive(false);
