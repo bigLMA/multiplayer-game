@@ -40,7 +40,7 @@ namespace Counters
 
             if(attachComponent!=null)
             {
-                if(attachComponent.attachObject == null)
+                //if(attachComponent.attachObject == null)
                 {
                     var go =Instantiate(productPrefab);
                     attachComponent.Attach(go);

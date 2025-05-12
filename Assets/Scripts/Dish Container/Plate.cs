@@ -16,6 +16,15 @@ namespace DishContainer
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            //var attachComp = GetComponent<IAttach>();
+            //var dishGO = Instantiate(dishPrefab);
+
+            //dish = dishGO.GetComponent<IDish>();
+            //attachComp.Attach(dishGO);
+        }
+
+        void Awake()
+        {
             var attachComp = GetComponent<IAttach>();
             var dishGO = Instantiate(dishPrefab);
 

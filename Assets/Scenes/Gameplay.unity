@@ -1577,7 +1577,7 @@ PrefabInstance:
       addedObject: {fileID: 2098201517}
     - targetCorrespondingSourceObject: {fileID: 3294758251327466535, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2098201518}
+      addedObject: {fileID: 2098201521}
   m_SourcePrefab: {fileID: 100100000, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
 --- !u!1001 &1707840377
 PrefabInstance:
@@ -1998,7 +1998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 2
---- !u!114 &2098201518
+--- !u!114 &2098201521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2007,7 +2007,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2098201513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b994eb53327bda4daf76d01cfe29b8d, type: 3}
+  m_Script: {fileID: 11500000, guid: a4d02eedc52bfca4295f3b50c164881d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attachOffset: {x: 0, y: 1.16, z: 1.06}
