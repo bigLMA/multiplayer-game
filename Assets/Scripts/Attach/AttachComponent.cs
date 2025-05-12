@@ -11,7 +11,7 @@ namespace Attach
         private Vector3 attachOffset = Vector3.zero;
         public GameObject attachObject { get; private set; } = null;
 
-        public void Attach(GameObject target)
+        public virtual void Attach(GameObject target)
         {
             if (attachObject != null) return;
             if(target == null) return;
@@ -22,7 +22,7 @@ namespace Attach
             attachObject.transform.localPosition += attachOffset;
         }
 
-        public void Detach()
+        public virtual void Detach()
         {
             if (attachObject == null) return;
 
@@ -30,7 +30,7 @@ namespace Attach
             attachObject=null;
         }
 
-        public void Swap(IAttach target)
+        public virtual void Swap(IAttach target)
         {
             var thisAttach = attachObject;
             var targetAttach = target.attachObject;
@@ -42,7 +42,7 @@ namespace Attach
             target.Attach(thisAttach);
         }
 
-        public void DestroyAttached()
+        public virtual void DestroyAttached()
         {
             if(attachObject==null) return;
 
