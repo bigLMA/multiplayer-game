@@ -2,6 +2,8 @@
 {
     public interface IDishProduct
     {
-        string name { get; }
+        public string GetName();
+
+        public void Destroy();
     }
 }

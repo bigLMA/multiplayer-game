@@ -54,21 +54,24 @@ namespace Dish
         {
             if (product == null) return;
 
-            dish[product.name] = dish.ContainsKey(product.name) ? dish[product.name] + 1 : 1;
+            dish[product.GetName()] = dish.ContainsKey(product.GetName()) ? dish[product.GetName()] + 1 : 1;
 
-            if (product.name.Equals("meat"))
+            if (product.GetName().Equals("meat"))
             {
                 //TODO meat add
 
 
                 rawMeat.SetActive(true);
+                product.Destroy();
                 return;
             }
 
-            if (dish[product.name]==1)
+            if (dish[product.GetName()] ==1)
             {
-                dishMap[product.name].SetActive(true);  
+                dishMap[product.GetName()].SetActive(true);  
             }
+
+            product.Destroy();
         }
 
         public void Destroy()
