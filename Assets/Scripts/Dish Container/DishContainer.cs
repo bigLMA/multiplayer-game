@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using Dish;
 
 namespace DishContainer
 {
@@ -13,18 +13,4 @@ namespace DishContainer
         /// </summary>
         void Destroy();
     }
-}
-
-public interface IDishProduct
-{
-     string name { get; }
-}
-
-public interface IDish
-{
-     Dictionary<string, int> dish { get; }
-
-     void Add(IDishProduct product);
-
-     void Destroy();
 }
