@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea33b78983d42b44b2fb7aac937af4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSliceCount: 3
+  maxSliceCount: 2
   slicedProductPrefab: {fileID: 3812876574508226177, guid: 17cb28a1a37fd7f44ae6e1ad2aa9da78, type: 3}
 --- !u!1001 &1845905871233530044
 PrefabInstance:

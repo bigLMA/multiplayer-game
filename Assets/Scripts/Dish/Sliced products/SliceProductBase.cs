@@ -1,29 +1,32 @@
 using UnityEngine;
 
-public class SliceProductBase : MonoBehaviour
+namespace Dish.SlicedProducts
 {
-    [Header("Slicing info")]
-    [SerializeField]
-    [Tooltip("How much to slice product to get sliced version")]
-    [Range(2f, 6f)]
-    private float maxSliceCount = 2f;
-
-    [SerializeField]
-    [Tooltip("What prefab to instantiate after the product is sliced")]
-    private GameObject slicedProductPrefab;
-
-    private float sliceProgress =0f;
-
-    public delegate void SliceNotify(GameObject prefab);
-    public event SliceNotify OnSliced;
-
-    public void Slice()
+    public class SliceProductBase : MonoBehaviour
     {
-        sliceProgress += 1f;
+        [Header("Slicing info")]
+        [SerializeField]
+        [Tooltip("How much to slice product to get sliced version")]
+        [Range(2f, 6f)]
+        private float maxSliceCount = 2f;
 
-        if(sliceProgress>=maxSliceCount)
+        [SerializeField]
+        [Tooltip("What prefab to instantiate after the product is sliced")]
+        private GameObject slicedProductPrefab;
+
+        private float sliceProgress = 0f;
+
+        public delegate void SliceNotify(GameObject prefab);
+        public event SliceNotify OnSliced;
+
+        public void Slice()
         {
-            OnSliced?.Invoke(slicedProductPrefab);
+            sliceProgress += 1f;
+
+            if (sliceProgress >= maxSliceCount)
+            {
+                OnSliced?.Invoke(slicedProductPrefab);
+            }
         }
     }
 }
