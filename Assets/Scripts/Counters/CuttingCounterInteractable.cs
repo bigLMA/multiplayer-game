@@ -9,6 +9,13 @@ namespace Counters
     {
         private SliceProductBase product = null;
 
+        private Animator animator;
+
+        private void Start()
+        {
+            animator = GetComponent<Animator>();
+        }
+
         public override void Interact(Interactor interactor)
         {
             var attachComp = GetComponent<IAttach>();
@@ -55,6 +62,9 @@ namespace Counters
 
         public override void AltInteract()
         {
+            if(product ==null) return;
+
+            animator.SetTrigger("Cut");
             product?.Slice();
         }
 
