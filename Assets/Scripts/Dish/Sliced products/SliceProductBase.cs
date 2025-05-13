@@ -28,5 +28,7 @@ namespace Dish.SlicedProducts
                 OnSliced?.Invoke(slicedProductPrefab);
             }
         }
+
+        public GameObject GetSlicedPrefab() => slicedProductPrefab;
     }
 }
