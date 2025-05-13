@@ -13,7 +13,7 @@ namespace Counters
 
             if (attachComp == null || interactorAttachComp == null) return;
 
-            attachComp.Swap(interactorAttachComp);
+            interactorAttachComp.Swap(attachComp);
         }
 
         public override void AltInteract()
