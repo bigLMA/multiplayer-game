@@ -2,10 +2,10 @@
 
 namespace Dish.DishProducts
 {
-    public class CabbageSlices : MonoBehaviour, IDishProduct
+    public class CabbageSlices : DishProductBase
     {
         public void Destroy()=> Destroy(gameObject);
 
-        public string GetName() => "cabbage";
+        public override string GetName() => "cabbage";
     }
 }

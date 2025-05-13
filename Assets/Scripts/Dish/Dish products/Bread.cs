@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace Dish.DishProducts
 {
-    public class Bread : MonoBehaviour, IDishProduct
+    public class Bread : DishProductBase
 {
         public void Destroy()
         {
             Destroy(gameObject);
         }
 
-        public string GetName() => "bread";
+        public override string GetName() => "bread";
     }
 }

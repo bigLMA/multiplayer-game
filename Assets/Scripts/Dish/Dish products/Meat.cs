@@ -2,13 +2,8 @@
 
 namespace Dish.DishProducts
 {
-    public class Meat : MonoBehaviour, IDishProduct
+    public class Meat : DishProductBase
     {
-        public void Destroy()
-        {
-            Destroy(gameObject);
-        }
-
-        public string GetName() => "meat";
+        public override string GetName() => "meat";
     }
 }

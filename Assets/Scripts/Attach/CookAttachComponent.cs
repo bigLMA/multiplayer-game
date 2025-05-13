@@ -6,7 +6,7 @@ namespace Attach
 {
     public class CookAttachComponent : AttachComponent
     {
-        private IDishContainer container;
+        private DishContainerBase container;
 
         public override void Attach(GameObject target)
         {
@@ -15,20 +15,35 @@ namespace Attach
                 base.Attach(target);
             }
 
-            IDishContainer? cont = target.GetComponent<IDishContainer>();
-
-            if (cont != null)
+            if(target==null)    
             {
-                container = cont;
+                return;
             }
+
+            //DishContainerBase? cont = target.GetComponent<DishContainerBase>();
+
+            if(target.TryGetComponent(out DishContainerBase cont))
+            {
+                if (cont != null)
+                {
+                    container = cont;
+                    base.Attach(target);
+                    return;
+                }
+            }
+
+
 
             if(container!=null)
             {
-                var prod = target.GetComponent<IDishProduct>();
+                //var prod = target.GetComponent<DishProductBase>();
 
-                if (prod!=null)
+                if(target.TryGetComponent(out DishProductBase prod))
                 {
-                    container.Add(prod);
+                    if (prod != null)
+                    {
+                        container.Add(prod);
+                    }
                 }
             }
         }
@@ -47,6 +62,15 @@ namespace Attach
         {
             if(container!= null)
             {
+                if(target.attachObject!=null)
+                {
+                    if (target.attachObject.TryGetComponent(out DishProductBase prod))
+                    {
+                        container.Add(prod);
+                        return;
+                    }
+                }
+
                 container = null;
             }
 

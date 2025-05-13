@@ -2,10 +2,10 @@
 
 namespace Dish.DishProducts
 {
-    public class CheeseSlices : MonoBehaviour, IDishProduct
+    public class CheeseSlices : DishProductBase
     {
         public void Destroy()=> Destroy(gameObject);
 
-        public string GetName() => "cheese";
+        public override string GetName() => "cheese";
     }
 }

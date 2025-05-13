@@ -1,10 +1,11 @@
 using Attach;
 using Dish;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DishContainer
 {
-    public class Plate : MonoBehaviour, IDishContainer
+    public class Plate : DishContainerBase
     {
         [Header("Dish")]
         [SerializeField]
@@ -32,30 +33,46 @@ namespace DishContainer
             attachComp.Attach(dishGO);
         }
 
-        public void Add(IDishProduct product)
+        public override void Add(DishProductBase product)
         {
-            if(dish!=null)
+            if (dish != null)
             {
                 dish.Add(product);
             }
         }
 
-        public void Destroy()
+        public override void Clear()
         {
-            if(dish!=null)
-            {
-                 dish.Destroy();
-            }
-
-            Destroy(gameObject);
-        }
-
-        public void DestroyDish()
-        {
-            if(dish!=null)
+            if (dish != null)
             {
                 dish.Destroy();
             }
         }
+
+        //public void Add(IDishProduct product)
+        //{
+        //    if(dish!=null)
+        //    {
+        //        dish.Add(product);
+        //    }
+        //}
+
+        //public void Destroy()
+        //{
+        //    if(dish!=null)
+        //    {
+        //         dish.Destroy();
+        //    }
+
+        //    Destroy(gameObject);
+        //}
+
+        //public void DestroyDish()
+        //{
+        //    if(dish!=null)
+        //    {
+        //        dish.Destroy();
+        //    }
+        //}
     }
 }

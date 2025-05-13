@@ -50,7 +50,7 @@ namespace Dish
             };
         }
 
-        public void Add(IDishProduct product)
+        public void Add(DishProductBase product)
         {
             if (product == null) return;
 
@@ -62,7 +62,7 @@ namespace Dish
 
 
                 rawMeat.SetActive(true);
-                product.Destroy();
+                Destroy(product.gameObject);
                 return;
             }
 
@@ -71,7 +71,7 @@ namespace Dish
                 dishMap[product.GetName()].SetActive(true);  
             }
 
-            product.Destroy();
+            Destroy(product.gameObject);
         }
 
         public void Destroy()

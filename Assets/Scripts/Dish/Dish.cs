@@ -6,7 +6,7 @@ namespace Dish
     {
         Dictionary<string, int> dish { get; }
 
-        void Add(IDishProduct product);
+        void Add(DishProductBase product);
 
         void Destroy();
     }
