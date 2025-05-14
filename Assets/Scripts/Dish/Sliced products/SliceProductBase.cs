@@ -1,5 +1,6 @@
 using UI.ProgressBars;
 using UnityEngine;
+using Misc;
 
 namespace Dish.SlicedProducts
 {
@@ -34,6 +35,11 @@ namespace Dish.SlicedProducts
 
             gameObject.transform.rotation = Quaternion.identity;
             productMesh.transform.rotation = Quaternion.identity;
+
+            if(progressBarGO.TryGetComponent(out FaceCamera camera))
+            {
+                camera.camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            }
         }
 
         public void Slice()
