@@ -46,7 +46,7 @@ public class FryProductBase : MonoBehaviour
         if(cookedGO.activeInHierarchy)
         {
             timer.Start(burnTime);
-            timer.OnTimerFinished += OnBuned;
+            timer.OnTimerFinished += OnBurned;
         }
         else
         {
@@ -62,9 +62,9 @@ public class FryProductBase : MonoBehaviour
         rawGO.SetActive(false);
     }
 
-    private void OnBuned()
+    private void OnBurned()
     {
-        timer.OnTimerFinished-= OnBuned;
+        timer.OnTimerFinished-= OnBurned;
 
         cookedGO.SetActive(false);
         burnedGO.SetActive(true);
