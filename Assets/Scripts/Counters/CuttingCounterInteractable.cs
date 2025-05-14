@@ -2,6 +2,8 @@ using UnityEngine;
 using Interaction;
 using Attach;
 using Dish.SlicedProducts;
+using DishContainer;
+using Dish;
 
 namespace Counters
 {
@@ -30,7 +32,6 @@ namespace Counters
                 if (interactorAttachComp.attachObject.TryGetComponent(out SliceProductBase sliced))
                 {
                     interactorAttachComp.Swap(attachComp);
-                    
                     AttachProduct(sliced);
 
                     return;
@@ -38,10 +39,14 @@ namespace Counters
             }
             else
             {
-                if(interactorAttachComp.attachObject== null)
+                if (product != null)
+                {
+                    product.ResetSliceBar();
+                }
+
+                if (interactorAttachComp.attachObject== null)
                 {
                     interactorAttachComp.Swap(attachComp);
-
                     DetachProduct();
 
                     return;
@@ -51,10 +56,20 @@ namespace Counters
                     if (interactorAttachComp.attachObject.TryGetComponent(out SliceProductBase sliced))
                     {
                         interactorAttachComp.Swap(attachComp);
-
                         AttachProduct(sliced);
 
                         return;
+                    }
+
+                    if(interactorAttachComp.attachObject.TryGetComponent(out DishContainerBase container))
+                    {
+                        if(attachComp.attachObject.TryGetComponent(out DishProductBase dishProduct))
+                        {
+                            interactorAttachComp.Swap(attachComp);
+                            attachComp.Detach();
+
+                            return;
+                        }
                     }
                 }
             }
