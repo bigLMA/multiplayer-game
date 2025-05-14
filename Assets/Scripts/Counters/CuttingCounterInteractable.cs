@@ -4,6 +4,7 @@ using Attach;
 using Dish.SlicedProducts;
 using DishContainer;
 using Dish;
+using Misc;
 
 namespace Counters
 {
@@ -13,9 +14,12 @@ namespace Counters
 
         private Animator animator;
 
+        private PlaySound playSoundComp;
+
         private void Start()
         {
             animator = GetComponent<Animator>();
+            playSoundComp = GetComponent<PlaySound>();
         }
 
         public override void Interact(Interactor interactor)
@@ -81,6 +85,8 @@ namespace Counters
 
             animator.SetTrigger("Cut");
             product?.Slice();
+
+            playSoundComp.Play();
         }
 
         private void OnProductSliced(GameObject prefab)
