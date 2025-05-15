@@ -334,6 +334,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unselected: {fileID: 4998458208842551057}
   selected: {fileID: 3685425012677557007}
+  stoveOnVisual: {fileID: 17251720544094567}
+  sizzlingParticles: {fileID: 5220305274835918574}
 --- !u!65 &7736887502839532993
 BoxCollider:
   m_ObjectHideFlags: 0
