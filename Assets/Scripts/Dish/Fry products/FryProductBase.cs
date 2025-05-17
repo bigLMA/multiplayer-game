@@ -1,4 +1,5 @@
 using Misc.Timer;
+using System.Timers;
 using UnityEngine;
 
 namespace Dish.FryProducts
@@ -32,22 +33,23 @@ namespace Dish.FryProducts
 
         public FryStateBase state { get; set; }
 
+        ITimer timer = new SecondsTimer();
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             cookedGO.SetActive(false);
             burnedGO.SetActive(false);
 
-            rawState = new RawState(rawGO, cookTime, this);
-            cookedState = new CookedState(cookedGO, burnTime, this);
+            rawState = new RawState(rawGO, cookTime, timer, this);
+            cookedState = new CookedState(cookedGO, burnTime, timer, this);
             burnedState = new BurnedState(burnedGO);
 
             state = rawState;
             state.Enter();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void UpdateRoutine()
         {
             if (state == null) return;
 

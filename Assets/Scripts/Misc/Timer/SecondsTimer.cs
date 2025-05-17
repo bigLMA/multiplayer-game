@@ -32,8 +32,8 @@
 
                 if (duration <= 0f && status == TimerStatus.started)
                 {
-                    OnTimerFinished?.Invoke();
                     Stop();
+                    OnTimerFinished?.Invoke();
                 }
             }
         }

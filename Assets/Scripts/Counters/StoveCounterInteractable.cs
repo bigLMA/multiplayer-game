@@ -17,6 +17,13 @@ namespace Counters
 
         private FryProductBase fryProduct = null;
 
+        private AudioSource audioSource;
+
+        private void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         public override void Interact(Interactor interactor)
         {
             var attachComp = GetComponent<IAttach>();
@@ -44,13 +51,21 @@ namespace Counters
             }
         }
 
+        private void Update()
+        {
+            if(frying)
+            {
+                if (fryProduct == null) return;
+
+                fryProduct.UpdateRoutine();
+            }
+        }
+
         public override void AltInteract()
         {
-            if (fryProduct == null) return;
-
             frying= !frying;
 
-            if (frying)
+            if(frying)
             {
                 StartFrying();
             }
@@ -62,20 +77,22 @@ namespace Counters
 
         private void StartFrying()
         {
-            fryProduct.StartFrying();
             stoveOnVisual.SetActive(true);
+
             sizzlingParticles.SetActive(true);
             var particles = sizzlingParticles.GetComponent<ParticleSystem>();
             particles.Play();
+            audioSource.Play();
         }
 
         private void StopFrying()
         {
-            fryProduct.StopFrying();
             stoveOnVisual.SetActive(false);
+
             sizzlingParticles.SetActive(false);
             var particles = sizzlingParticles.GetComponent<ParticleSystem>();
             particles.Stop();
+            audioSource.Stop();
         }
     }
 

@@ -9,15 +9,16 @@ namespace Dish.FryProducts
 
         private float cookTime;
 
-        private ITimer timer = new SecondsTimer();
+        private ITimer timer;
 
         private FryProductBase parent;
 
-        public RawState(GameObject raw, float time, FryProductBase product)
+        public RawState(GameObject raw, float time, ITimer timerRef, FryProductBase product)
         {
             rawGO = raw;
             cookTime = time;
             parent = product;
+            timer = timerRef;
 
             Enter();
         }
@@ -25,6 +26,7 @@ namespace Dish.FryProducts
         public override void Enter()
         {
             rawGO.SetActive(true);
+            StartCooking();
         }
 
         public override void Exit()
@@ -35,7 +37,9 @@ namespace Dish.FryProducts
             timer.OnTimerFinished -= Exit;
 
             rawGO.SetActive(false); 
+
             parent.state = parent.cookedState;
+            parent.state.Enter();
         }
 
         public override void StartCooking()
@@ -43,12 +47,15 @@ namespace Dish.FryProducts
             if (timer == null) return;
 
             timer.Start(cookTime);
+            timer.OnTimerFinished+= Exit;   
         }
 
         public override void StopCooking()
         {
             if (timer == null) return;
 
+            StopCooking();
+            
             timer.Pause();
             timer.OnTimerFinished += Exit;
         }
