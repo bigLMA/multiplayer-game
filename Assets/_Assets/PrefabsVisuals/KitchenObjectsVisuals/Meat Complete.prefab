@@ -61,11 +61,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawGO: {fileID: 7109937447516956036}
-  cookTime: 2
+  cookTime: 3.5
   cookedGO: {fileID: 1394188789392551551}
-  burnTime: 1
+  burnTime: 5
   burnedGO: {fileID: 2063308065393221465}
-  burnProgressNotification: 0.25
+  burnProgressNotification: 0.35
 --- !u!1001 &2860674556235593982
 PrefabInstance:
   m_ObjectHideFlags: 0

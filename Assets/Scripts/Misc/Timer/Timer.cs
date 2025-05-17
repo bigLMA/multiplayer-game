@@ -21,6 +21,8 @@ namespace Misc.Timer
 
         public float duration { get; }
 
+        public float maxDuration { get; }
+
         public TimerStatus status { get; }
 
         public delegate void TimerCallback();

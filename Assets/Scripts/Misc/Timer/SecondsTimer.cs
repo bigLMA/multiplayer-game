@@ -3,6 +3,7 @@
     public class SecondsTimer : ITimer
     {
         public float duration { get; private set; } = 0f;
+        public float maxDuration { get; private set; } = 0f;
 
         public TimerStatus status { get; private set; } = TimerStatus.stopped;
 
@@ -15,6 +16,7 @@
 
         public void Start(float newDuration)
         {
+            maxDuration = newDuration;
             duration = newDuration;
             status = TimerStatus.started;
         }
