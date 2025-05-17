@@ -6,10 +6,9 @@ namespace UI.ProgressBars
     {
         void SetProgress(float progress);
 
-        //void SetupProgressBar(Canvas canvas);
         void SetupProgressBar();
 
-        void ResetProgressBar(Transform transform);
+        void ResetProgressBar();
 
         bool displaying { get; }
     }

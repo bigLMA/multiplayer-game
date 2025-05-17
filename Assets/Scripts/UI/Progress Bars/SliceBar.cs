@@ -17,12 +17,8 @@ namespace UI.ProgressBars
             gameObject.SetActive(false);
         }
 
-        public void ResetProgressBar(Transform transform)
+        public void ResetProgressBar()
         {
-            //transform.parent = null;
-            //transform.parent = transform;
-            //displaying = false;
-
             gameObject.SetActive(false);
         }
 
@@ -35,21 +31,7 @@ namespace UI.ProgressBars
         public void SetupProgressBar()
         {
             gameObject.SetActive(true);
-            //GetComponent<Canvas>().worldCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-            //displaying = true;
-
-            //var rectTransform = GetComponent<RectTransform>();
-            //rectTransform.localPosition = new Vector3(0f, 1.75f);
-            //transform.SetParent(GameObject.Find("Canvas").transform);
-            //rectTransform.rotation = Quaternion.identity;
-            //rectTransform.localScale = Vector3.one;
-            //rectTransform.sizeDelta = new Vector2(2f, 0.35f);
         }
-
-        //public void SetupProgressBar(Canvas canvas)
-        //{
-        //    transform.SetParent(canvas.transform);
-        //}
     }
 }
 

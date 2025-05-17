@@ -65,7 +65,7 @@ namespace Dish.SlicedProducts
 
         public void ResetSliceBar()
         {
-            progressBar.ResetProgressBar(transform);
+            progressBar.ResetProgressBar();
         }
 
         public GameObject GetSlicedPrefab() => slicedProductPrefab;
