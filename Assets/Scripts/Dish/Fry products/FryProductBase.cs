@@ -26,65 +26,46 @@ namespace Dish.FryProducts
         [Range(0.25f, 0.65f)]
         private float burnProgressNotification = 0.25f;
 
-        private ITimer timer;
+        public FryStateBase rawState { get; private set; }
+        public FryStateBase cookedState { get; private set; } 
+        public FryStateBase burnedState { get; private set; } 
+
+        public FryStateBase state { get; set; }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            timer = new SecondsTimer();
-
             cookedGO.SetActive(false);
             burnedGO.SetActive(false);
+
+            rawState = new RawState(rawGO, cookTime, this);
+            cookedState = new CookedState(cookedGO, burnTime, this);
+            burnedState = new BurnedState(burnedGO);
+
+            state = rawState;
+            state.Enter();
         }
 
         // Update is called once per frame
         void Update()
         {
-            timer.Update(Time.deltaTime);
+            if (state == null) return;
+
+            state.Update(Time.deltaTime);
         }
 
         public void StartFrying()
         {
-            if (cookedGO.activeInHierarchy)
-            {
-                timer.Start(burnTime);
-                timer.OnTimerFinished += OnBurned;
-            }
-            else
-            {
-                timer.Start(cookTime);
-                timer.OnTimerFinished += OnCooked;
-            }
+            if (state == null) return;
+
+            state.StartCooking();
         }
 
         public void StopFrying()
         {
-            if (cookedGO.activeInHierarchy)
-            {
-                timer.Pause();
-                timer.OnTimerFinished -= OnBurned;
-            }
-            else
-            {
-                timer.Pause();
-                timer.OnTimerFinished -= OnCooked;
-            }
-        }
+            if (state == null) return;
 
-        private void OnCooked()
-        {
-            timer.OnTimerFinished -= OnCooked;
-
-            rawGO.SetActive(false);
-            cookedGO.SetActive(true);
-        }
-
-        private void OnBurned()
-        {
-            timer.OnTimerFinished -= OnBurned;
-
-            cookedGO.SetActive(false);
-            burnedGO.SetActive(true);
+            state.StopCooking();
         }
     }
 
