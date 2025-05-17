@@ -1,5 +1,6 @@
 using Misc.Timer;
 using System.Timers;
+using UI.ProgressBars;
 using UnityEngine;
 
 namespace Dish.FryProducts
@@ -27,6 +28,9 @@ namespace Dish.FryProducts
         [Range(0.25f, 0.65f)]
         private float burnProgressNotification = 0.25f;
 
+        [SerializeField]
+        private GameObject progressBarGO;
+
         public FryStateBase rawState { get; private set; }
         public FryStateBase cookedState { get; private set; } 
         public FryStateBase burnedState { get; private set; } 
@@ -41,8 +45,10 @@ namespace Dish.FryProducts
             cookedGO.SetActive(false);
             burnedGO.SetActive(false);
 
-            rawState = new RawState(rawGO, cookTime, timer, this);
-            cookedState = new CookedState(cookedGO, burnTime, timer, this);
+            var progressBar = progressBarGO.GetComponent<IProgressBar>();
+
+            rawState = new RawState(rawGO, cookTime, progressBar, timer, this);
+            cookedState = new CookedState(cookedGO, burnTime, burnProgressNotification, progressBar, timer, this);
             burnedState = new BurnedState(burnedGO);
 
             state = rawState;
