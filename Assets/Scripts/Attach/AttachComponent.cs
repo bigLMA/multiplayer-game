@@ -20,6 +20,7 @@ namespace Attach
             attachObject.transform.parent = transform;
             attachObject.transform.position= transform.position;
             attachObject.transform.localPosition += attachOffset;
+            attachObject.transform.rotation = Quaternion.identity;
         }
 
         public virtual void Detach()
