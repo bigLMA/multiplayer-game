@@ -52,8 +52,6 @@ namespace Dish.FryProducts
         {
             if (timer == null) return;
 
-            progressBar.SetupProgressBar();
-
             timer.Start(cookTime);
             timer.OnTimerFinished+= Exit;
         }
@@ -62,8 +60,8 @@ namespace Dish.FryProducts
         {
             if (timer == null) return;
 
-            StopCooking();
-            
+            progressBar.ResetProgressBar();
+
             timer.Pause();
             timer.OnTimerFinished -= Exit;
         }
@@ -74,9 +72,11 @@ namespace Dish.FryProducts
 
             timer.Update(deltaTime);
 
+            progressBar.SetupProgressBar();
+
             if (progressBar == null || !progressBar.displaying) return;
 
-            progressBar.SetProgress(timer.duration / timer.maxDuration);
+            progressBar.SetProgress(1f-timer.duration / timer.maxDuration);
         }
     }
 }

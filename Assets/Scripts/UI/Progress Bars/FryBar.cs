@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI.ProgressBars
 {
-    public class FryBar : MonoBehaviour, IProgressBar, IVisit<CookedState>
+    public class FryBar : MonoBehaviour, IProgressBar/*, IVisit<CookedState>*/
     {
         [SerializeField]
         private Image progressBar;
@@ -18,7 +18,7 @@ namespace UI.ProgressBars
 
         private Color initialColor;
 
-        private CookedState state;
+        //private CookedState state;
 
         public bool displaying { get; private set; } = false;
 
@@ -42,10 +42,10 @@ namespace UI.ProgressBars
         public void SetupProgressBar()
         {
             displaying = true;
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
         }
 
-        public void Visit(CookedState value)=>state = value;
+       // public void Visit(CookedState value)=>state = value;
 
         private void Warning()
         {

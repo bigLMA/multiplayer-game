@@ -64,6 +64,8 @@ namespace Dish.FryProducts
 
         public override void StopCooking()
         {
+            progressBar.ResetProgressBar();
+
             timer.Pause();
         }
 
@@ -76,7 +78,7 @@ namespace Dish.FryProducts
             if(progressBar==null || !progressBar.displaying) return;
 
             var progress = timer.duration/timer.maxDuration;
-            progressBar.SetProgress(progress);
+            progressBar.SetProgress(1f-progress);
 
             if(progress>=burnWarningProgress)
             {
