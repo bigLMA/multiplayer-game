@@ -1,4 +1,5 @@
-﻿using Misc.Timer;
+﻿using Misc;
+using Misc.Timer;
 using UI.ProgressBars;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ namespace Dish.FryProducts
 
         private ITimer timer;
 
+        public delegate void BurnWarning();
+        public event BurnWarning OnBurnWarning;
+
         public CookedState(GameObject cooked, float cookTime, float warningProgress, IProgressBar bar, ITimer timerRef, FryProductBase product)
         {
             cookedGO = cooked;
@@ -26,6 +30,14 @@ namespace Dish.FryProducts
             timer = timerRef;
             burnWarningProgress = warningProgress;
             progressBar = bar;
+
+            if(progressBar!= null)
+            {
+                if(progressBar is IVisit<CookedState> visit)
+                {
+                    visit.Visit(this);
+                }
+            }
         }
 
         public override void Enter()
@@ -80,9 +92,9 @@ namespace Dish.FryProducts
             var progress = timer.duration/timer.maxDuration;
             progressBar.SetProgress(1f-progress);
 
-            if(progress>=burnWarningProgress)
+            if(1-progress>=burnWarningProgress)
             {
-                //TODO warning
+                OnBurnWarning?.Invoke();
             }
         }
     }
