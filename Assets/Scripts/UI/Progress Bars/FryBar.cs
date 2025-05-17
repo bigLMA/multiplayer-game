@@ -22,6 +22,11 @@ namespace UI.ProgressBars
 
         public bool displaying { get; private set; } = false;
 
+        void Start()
+        {
+            initialColor = progressBar.color;
+        }
+
         public void ResetProgressBar()
         {
             displaying = false;
