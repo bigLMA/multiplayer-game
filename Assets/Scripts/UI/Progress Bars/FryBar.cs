@@ -20,10 +20,11 @@ namespace UI.ProgressBars
 
         private CookedState state;
 
-        public bool displaying { get; private set; }
+        public bool displaying { get; private set; } = false;
 
         public void ResetProgressBar()
         {
+            displaying = false;
             gameObject.SetActive(false);
             progressBar.fillAmount = 0f;
         }
@@ -35,6 +36,7 @@ namespace UI.ProgressBars
 
         public void SetupProgressBar()
         {
+            displaying = true;
             gameObject.SetActive(false);
         }
 
