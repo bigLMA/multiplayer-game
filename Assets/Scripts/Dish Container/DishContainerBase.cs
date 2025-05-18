@@ -8,5 +8,7 @@ namespace DishContainer
         public abstract void Add(DishProductBase product);
 
         public abstract void Clear();
+
+        public IDish dish {  get; protected set; }  
     }
 }
