@@ -19,11 +19,19 @@ namespace Misc
         public void Play()
         {
             if (sounds.Count == 0) return;
+            if(audioSource==null) return;
 
             var rand = Random.Range(0, sounds.Count);
 
             audioSource.resource = sounds[rand];
             audioSource.Play();
+        }
+
+        public void Stop()
+        {
+            if(audioSource==null)return;
+
+            audioSource.Stop();
         }
     }
 }
