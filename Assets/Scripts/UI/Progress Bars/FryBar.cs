@@ -2,6 +2,7 @@ using Dish.FryProducts;
 using UnityEngine;
 using Misc;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace UI.ProgressBars
 {
@@ -16,15 +17,34 @@ namespace UI.ProgressBars
         [SerializeField]
         private GameObject warningGO;
 
+        [SerializeField]
+        [Range(1f, 12f)]
+        private float speed = 1f;
+
         private Color initialColor;
 
         private CookedState state;
 
+        private bool warning = false;
+
         public bool displaying { get; private set; } = false;
+
+        private PlaySound playSoundComp;
 
         void Start()
         {
             initialColor = progressBar.color;
+            playSoundComp = GetComponent<PlaySound>();  
+        }
+
+        void Update()
+        {
+            if (warning)
+            {
+                var val = Mathf.PingPong(Time.time * speed, 1f);
+                progressBar.color = Color.Lerp(initialColor, warningColor, val);
+                warningGO.GetComponent<CanvasRenderer>().SetAlpha(val);
+            }
         }
 
         public void ResetProgressBar()
@@ -32,6 +52,10 @@ namespace UI.ProgressBars
             displaying = false;
             gameObject.SetActive(false);
             progressBar.fillAmount = 0f;
+            warningGO.SetActive(false); 
+
+            warning = false;
+            playSoundComp.Stop();
         }
 
         public void SetProgress(float progress)
@@ -53,9 +77,10 @@ namespace UI.ProgressBars
 
         private void Warning()
         {
-            state.OnBurnWarning-=Warning;
-            print("WARNING");
+            state.OnBurnWarning -= Warning;
             warningGO.SetActive(true);
+            warning = true;
+            playSoundComp.Play();
         }
     }
 }

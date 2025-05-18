@@ -66,7 +66,7 @@ MonoBehaviour:
   cookedGO: {fileID: 1394188789392551551}
   burnTime: 5
   burnedGO: {fileID: 2063308065393221465}
-  burnProgressNotification: 0.37
+  burnProgressNotification: 0.35
   progressBarGO: {fileID: 4583461097289271588}
 --- !u!1001 &2860674556235593982
 PrefabInstance:
