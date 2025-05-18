@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 5601067968686799677}
   - component: {fileID: 7736887502839532993}
   - component: {fileID: 474047503411007061}
+  - component: {fileID: -1217549709985199733}
   m_Layer: 0
   m_Name: StoveCounter_Visual
   m_TagString: Untagged
@@ -455,6 +456,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1217549709985199733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589716710238282922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3575f5c8eb8adf9458f587e239447f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 511c1cbfb8b48b64083aec78fe17115f, type: 3}
 --- !u!1 &4998458208842551057
 GameObject:
   m_ObjectHideFlags: 0

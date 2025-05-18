@@ -2,6 +2,7 @@ using UnityEngine;
 using Interaction;
 using Attach;
 using Dish.FryProducts;
+using Misc;
 
 namespace Counters
 {
@@ -17,11 +18,11 @@ namespace Counters
 
         private FryProductBase fryProduct = null;
 
-        private AudioSource audioSource;
+        private PlaySound playSoundComp;
 
         private void Start()
         {
-            audioSource = GetComponent<AudioSource>();
+            playSoundComp = GetComponent<PlaySound>();
         }
 
         public override void Interact(Interactor interactor)
@@ -82,7 +83,7 @@ namespace Counters
             sizzlingParticles.SetActive(true);
             var particles = sizzlingParticles.GetComponent<ParticleSystem>();
             particles.Play();
-            audioSource.Play();
+            playSoundComp.Play();
         }
 
         private void StopFrying()
@@ -92,7 +93,7 @@ namespace Counters
             sizzlingParticles.SetActive(false);
             var particles = sizzlingParticles.GetComponent<ParticleSystem>();
             particles.Stop();
-            audioSource.Stop();
+            playSoundComp.Stop();
         }
     }
 
