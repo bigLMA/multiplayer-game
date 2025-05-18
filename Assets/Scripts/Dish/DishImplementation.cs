@@ -1,3 +1,4 @@
+using Dish.FryProducts;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,12 +59,29 @@ namespace Dish
 
             if (product.GetName().Equals("meat"))
             {
-                //TODO meat add
+                if(product.TryGetComponent(out FryProductBase fryProduct))
+                {
+                    if(fryProduct.state == fryProduct.rawState)
+                    {
+                        rawMeat.SetActive(true);
+                    }
+
+                    if (fryProduct.state == fryProduct.cookedState)
+                    {
+                        cookedMeat.SetActive(true);
+                    }
+
+                    if (fryProduct.state == fryProduct.burnedState)
+                    {
+                        burnedMeat.SetActive(true);
+                    }
+
+                    Destroy(product.gameObject);
+                    return;
+                }
 
 
-                rawMeat.SetActive(true);
-                Destroy(product.gameObject);
-                return;
+
             }
 
             if (dish[product.GetName()] ==1)

@@ -3,6 +3,8 @@ using Interaction;
 using Attach;
 using Dish.FryProducts;
 using Misc;
+using DishContainer;
+using Dish;
 
 namespace Counters
 {
@@ -38,6 +40,16 @@ namespace Counters
                 {
                     interactorAttachComp.Swap(attachComp);
                     fryProduct = product;
+                }
+
+                if(interactorAttachComp.attachObject.TryGetComponent(out DishContainerBase dishContainer))
+                {
+                    if(attachComp.attachObject.TryGetComponent(out DishProductBase dishProduct))
+                    {
+                        interactorAttachComp.Swap(attachComp);
+                        attachComp.Detach();
+                        fryProduct =null;
+                    }
                 }
             }
             else
