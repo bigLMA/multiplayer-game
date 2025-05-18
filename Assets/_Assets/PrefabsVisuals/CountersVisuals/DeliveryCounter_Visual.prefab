@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 4589716710238282923}
   - component: {fileID: 3066005336654413990}
   - component: {fileID: 4625119333037440076}
+  - component: {fileID: 8866258915624006271}
   m_Layer: 0
   m_Name: DeliveryCounter_Visual
   m_TagString: Untagged
@@ -242,3 +243,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unselected: {fileID: 591945872155229481}
   selected: {fileID: 478259533757126337}
+  dishDestroyDelay: 1
+--- !u!114 &8866258915624006271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589716710238282922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b994eb53327bda4daf76d01cfe29b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachOffset: {x: 0, y: 1.25, z: 0}
