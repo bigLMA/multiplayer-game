@@ -3,6 +3,8 @@ using UnityEngine;
 using Misc;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Audio;
 
 namespace UI.ProgressBars
 {
@@ -21,6 +23,9 @@ namespace UI.ProgressBars
         [Range(1f, 12f)]
         private float speed = 1f;
 
+        [SerializeField]
+        private List<AudioResource> sounds;
+
         private Color initialColor;
 
         private CookedState state;
@@ -29,12 +34,12 @@ namespace UI.ProgressBars
 
         public bool displaying { get; private set; } = false;
 
-        private PlaySound playSoundComp;
+        private IPlaySound playSound;
 
         void Start()
         {
             initialColor = progressBar.color;
-            playSoundComp = GetComponent<PlaySound>();  
+            playSound = new PlayRandomSound(GetComponent<AudioSource>(), sounds);
         }
 
         void Update()
@@ -55,7 +60,7 @@ namespace UI.ProgressBars
             warningGO.SetActive(false); 
 
             warning = false;
-            playSoundComp.Stop();
+            playSound.Stop();
         }
 
         public void SetProgress(float progress)
@@ -80,7 +85,7 @@ namespace UI.ProgressBars
             state.OnBurnWarning -= Warning;
             warningGO.SetActive(true);
             warning = true;
-            playSoundComp.Play();
+            playSound.Play();
         }
     }
 }

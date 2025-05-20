@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4936604837199494725}
   - component: {fileID: 2449585243218524163}
   - component: {fileID: 7438334225186365737}
-  - component: {fileID: 5714424004123672579}
   m_Layer: 0
   m_Name: Fry Bar
   m_TagString: Untagged
@@ -70,6 +69,9 @@ MonoBehaviour:
   warningColor: {r: 1, g: 0.16651759, b: 0, a: 1}
   warningGO: {fileID: 7230984963637033276}
   speed: 5
+  sounds:
+  - {fileID: 8300000, guid: b90d8099bdbf09a40ab1163556d5b5f4, type: 3}
+  - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
 --- !u!223 &2449585243218524163
 Canvas:
   m_ObjectHideFlags: 0
@@ -190,21 +192,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5714424004123672579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549406474244800153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3575f5c8eb8adf9458f587e239447f40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - {fileID: 8300000, guid: b90d8099bdbf09a40ab1163556d5b5f4, type: 3}
-  - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
 --- !u!1 &5792275077204210449
 GameObject:
   m_ObjectHideFlags: 0

@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 5512122403664866458}
   - component: {fileID: 8397440054813985582}
   - component: {fileID: 8590278750773472248}
-  - component: {fileID: 6818193260586958142}
+  - component: {fileID: 7319329070822181133}
   m_Layer: 0
   m_Name: CuttingCounter_Visual
   m_TagString: Untagged
@@ -183,6 +183,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unselected: {fileID: 8101788021821549737}
   selected: {fileID: 4208194994950469287}
+  sounds:
+  - {fileID: 8300000, guid: e519f586b4ac0904e877dfab85ed729e, type: 3}
+  - {fileID: 8300000, guid: 9c6157275e190604d8136e7e497e941e, type: 3}
+  - {fileID: 8300000, guid: 99c666127ba3b974c99980d14efcf03c, type: 3}
 --- !u!82 &8590278750773472248
 AudioSource:
   m_ObjectHideFlags: 0
@@ -280,7 +284,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6818193260586958142
+--- !u!114 &7319329070822181133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,13 +293,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4589716710238282922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3575f5c8eb8adf9458f587e239447f40, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b994eb53327bda4daf76d01cfe29b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - {fileID: 8300000, guid: e519f586b4ac0904e877dfab85ed729e, type: 3}
-  - {fileID: 8300000, guid: 9c6157275e190604d8136e7e497e941e, type: 3}
-  - {fileID: 8300000, guid: 99c666127ba3b974c99980d14efcf03c, type: 3}
+  attachOffset: {x: 0, y: 1.304, z: 0}
 --- !u!1 &8101788021821549737
 GameObject:
   m_ObjectHideFlags: 0

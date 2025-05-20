@@ -5,21 +5,26 @@ using Dish.SlicedProducts;
 using DishContainer;
 using Dish;
 using Misc;
+using System.Collections.Generic;
+using UnityEngine.Audio;
 
 namespace Counters
 {
     public class CuttingCounterInteractable : CounterVisualInteractable
     {
+        [SerializeField]
+        private List<AudioResource> sounds;
+
         private SliceProductBase product = null;
 
         private Animator animator;
 
-        private PlaySound playSoundComp;
+        private IPlaySound playSound;
 
         private void Start()
         {
             animator = GetComponent<Animator>();
-            playSoundComp = GetComponent<PlaySound>();
+            playSound = new PlayRandomSound(GetComponent<AudioSource>(), sounds);
         }
 
         public override void Interact(Interactor interactor)
@@ -86,7 +91,7 @@ namespace Counters
             animator.SetTrigger("Cut");
             product?.Slice();
 
-            playSoundComp.Play();
+            playSound.Play();
         }
 
         private void OnProductSliced(GameObject prefab)

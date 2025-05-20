@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unselected: {fileID: 7880980075579474333}
   selected: {fileID: 4783534475772618970}
+  sounds:
+  - {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
+  - {fileID: 8300000, guid: 6024ba1d53d005f48a96b3a9f6bacedd, type: 3}
 --- !u!65 &552212904498269205
 BoxCollider:
   m_ObjectHideFlags: 0
