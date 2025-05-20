@@ -1,29 +1,50 @@
 using UnityEngine;
 using PlayerController.ControllableObject;
-using Components.Moving;
+using Interaction;
 
 namespace CookCharacter
 {
     public class CookCharacter : MonoBehaviour, IControllableObject
     {
-        private MovingComponent movingComponent;
+        [Header("Moving")]
+        [SerializeField]
+        [Tooltip("Move speed")]
+        [Range(1f, 15f)]
+        private float speed = 6.5f;
+
+        private Vector2 direction;
+
+        private Interactor interactor;
 
         void Awake()
         {
-            movingComponent = GetComponent<MovingComponent>();
+            interactor = GetComponent<Interactor>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if(direction != Vector2.zero)
+            {
+                transform.forward = new Vector3(direction.x, transform.forward.y, direction.y);
+
+                if (!Physics.Raycast(transform.position + Vector3.up *0.5f, transform.forward + Vector3.up * 0.5f,0.5f))
+                {
+                    transform.Translate(0f, 0f, Time.deltaTime * speed);
+                }
+            }
         }
 
         public void OnAltInteract()
         {
-            throw new System.NotImplementedException();
+            interactor.AltInteract();
         }
 
         public void OnInteract()
         {
-            throw new System.NotImplementedException();
+            interactor.Interact();
         }
 
-        // On player input reset direction
-        public void OnMove(Vector2 direction)=>movingComponent.direction = direction;
+        public void OnMove(Vector2 dir)=>direction = dir;
     }
 }
