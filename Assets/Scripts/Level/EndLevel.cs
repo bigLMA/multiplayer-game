@@ -5,12 +5,12 @@ namespace Level
 {
     public class EndLevel : MonoBehaviour
     {
-        [SerializeField]
+        [field: SerializeField]
         [Tooltip("Level duration in minutes")]
         [Range(0.1f, 10f)]
-        private float levelDurationMins = 0.1f;
+        public float levelDurationMins { get; private set; } = 0.1f;
 
-        private float levelDurationSec;
+        public float levelDurationSec { get; private set; }
 
         public static EndLevel instance { get; private set; } =null;
 
