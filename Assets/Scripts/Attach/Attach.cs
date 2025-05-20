@@ -13,5 +13,9 @@ namespace Attach
         void DestroyAttached();
 
         GameObject attachObject { get; }
+
+        public delegate void AttachCallback();
+        public event AttachCallback OnAttach;
+        public event AttachCallback OnDetach;
     }
 }

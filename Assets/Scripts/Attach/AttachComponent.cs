@@ -9,6 +9,10 @@ namespace Attach
         [SerializeField]
         [Tooltip("Distance from parent to attach object")]
         private Vector3 attachOffset = Vector3.zero;
+
+        public event IAttach.AttachCallback OnAttach;
+        public event IAttach.AttachCallback OnDetach;
+
         public GameObject attachObject { get; private set; } = null;
 
         public virtual void Attach(GameObject target)
