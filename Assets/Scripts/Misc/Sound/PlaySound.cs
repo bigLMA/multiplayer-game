@@ -1,4 +1,4 @@
-namespace Misc
+namespace Misc.Sound
 {
     public interface IPlaySound
     {

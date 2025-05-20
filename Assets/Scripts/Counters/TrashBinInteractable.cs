@@ -4,6 +4,7 @@ using Attach;
 using Misc;
 using System.Collections.Generic;
 using UnityEngine.Audio;
+using Misc.Sound;
 
 namespace Counters
 {

@@ -1,12 +1,27 @@
 using DishContainer;
 using UnityEngine;
 using Dish;
+using UnityEngine.Audio;
+using Misc.Sound;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Attach
 {
     public class CookAttachComponent : AttachComponent
     {
+        [SerializeField]
+        private List<AudioResource> attachSounds;
+
         private DishContainerBase container;
+
+        private IPlaySound attachSound;
+
+        private void Start()
+        {
+            attachSound = new PlayRandomSound(GetComponent<AudioSource>(), attachSounds);
+            OnAttach += attachSound.Play;
+        }
 
         public override void Attach(GameObject target)
         {

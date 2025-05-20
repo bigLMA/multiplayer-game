@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Misc
+namespace Misc.Sound
 {
     /// <summary>
     /// Plays random / only sound out of given

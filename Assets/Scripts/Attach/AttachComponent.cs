@@ -25,6 +25,8 @@ namespace Attach
             attachObject.transform.position= transform.position;
             attachObject.transform.localPosition += attachOffset;
             attachObject.transform.rotation = Quaternion.identity;
+
+            OnAttach?.Invoke();
         }
 
         public virtual void Detach()
@@ -33,6 +35,8 @@ namespace Attach
 
             attachObject.transform.parent = null;
             attachObject=null;
+
+            OnDetach?.Invoke();
         }
 
         public virtual void Swap(IAttach target)
