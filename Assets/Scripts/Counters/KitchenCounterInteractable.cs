@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Counters
 {
-    public class KitchenCounterInteractable : CounterVisualInteractable
+    public class KitchenCounterInteractable : CounterWithAttachSound
     {
         public override void Interact(Interactor interactor)
         {

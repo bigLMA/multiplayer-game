@@ -10,7 +10,7 @@ using UnityEngine.Audio;
 
 namespace Counters
 {
-    public class StoveCounterInteractable : CounterVisualInteractable
+    public class StoveCounterInteractable : CounterWithAttachSound
     {
         [SerializeField]
         private GameObject stoveOnVisual;
@@ -24,9 +24,17 @@ namespace Counters
 
         private AudioSource source;
 
-        private void Start()
+        private AudioResource sizzlingLoop;
+
+        protected override void Start()
         {
+            base.Start();
+
             source = GetComponent<AudioSource>();
+            sizzlingLoop = source.resource;
+
+            var attach = GetComponent<AttachComponent>();
+            attach.OnAttach += ResetSource;
         }
 
         public override void Interact(Interactor interactor)
@@ -108,6 +116,13 @@ namespace Counters
             var particles = sizzlingParticles.GetComponent<ParticleSystem>();
             particles.Stop();
             source.Stop();
+        }
+
+        private void ResetSource()
+        {
+            source.Stop();
+            source.resource = sizzlingLoop;
+
         }
     }
 

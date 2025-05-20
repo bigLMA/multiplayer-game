@@ -7,7 +7,7 @@ using Dish;
 
 namespace Counters
 {
-    public class DeliveryCounterInteractable : CounterVisualInteractable
+    public class DeliveryCounterInteractable : CounterWithAttachSound
     {
         [SerializeField]
         [Range(0.5f, 3f)]

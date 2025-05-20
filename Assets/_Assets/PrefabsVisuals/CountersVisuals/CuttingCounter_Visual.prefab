@@ -183,6 +183,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unselected: {fileID: 8101788021821549737}
   selected: {fileID: 4208194994950469287}
+  attachSounds:
+  - {fileID: 8300000, guid: 9c88983fa5906dc41944ec5a43b6b5c7, type: 3}
+  - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
+  - {fileID: 8300000, guid: 961379cce253f794abff0d24df806b68, type: 3}
   sounds:
   - {fileID: 8300000, guid: e519f586b4ac0904e877dfab85ed729e, type: 3}
   - {fileID: 8300000, guid: 9c6157275e190604d8136e7e497e941e, type: 3}
@@ -200,7 +204,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

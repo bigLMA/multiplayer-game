@@ -11,7 +11,7 @@ using Misc.Sound;
 
 namespace Counters
 {
-    public class CuttingCounterInteractable : CounterVisualInteractable
+    public class CuttingCounterInteractable : CounterWithAttachSound
     {
         [SerializeField]
         private List<AudioResource> sounds;
@@ -22,8 +22,10 @@ namespace Counters
 
         private IPlaySound playSound;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+
             animator = GetComponent<Animator>();
             playSound = new PlayRandomSound(GetComponent<AudioSource>(), sounds);
         }
