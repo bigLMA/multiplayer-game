@@ -1,4 +1,7 @@
+using Misc.Sound;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Components.Moving
 {
@@ -9,6 +12,10 @@ namespace Components.Moving
         [Tooltip("Move speed")]
         [Range(1f, 15f)]
         private float speed = 6.5f;
+
+        [SerializeField]
+        [Tooltip("Sounds player make on movement")]
+        private List<AudioResource> sounds;
 
         /// <summary>
         /// Current player direction (zero vector if player not moving)
@@ -25,10 +32,17 @@ namespace Components.Moving
         /// </summary>
         private ParticleSystem walkParticles;
 
+        /// <summary>
+        /// Play sound
+        /// </summary>
+        private IPlaySound playSound;
+
         private void Start()
         {
             animator = GetComponent<Animator>();
             walkParticles = GetComponent<ParticleSystem>();
+
+            playSound = new PlayRandomSound(GetComponent<AudioSource>(), sounds);
         }
 
         // Update is called once per frame
@@ -62,5 +76,7 @@ namespace Components.Moving
                 walkParticles.Stop();
             }
         }
+
+        public void PlayWalkSound()=>playSound.Play();
     }
 }
