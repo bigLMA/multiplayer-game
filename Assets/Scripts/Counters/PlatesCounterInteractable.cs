@@ -11,8 +11,17 @@ namespace Counters
         [Tooltip("Plate Prefab")]
         private GameObject platePrefab;
 
+        private StackPlates stackPlates;
+
+        private void Start()
+        {
+            stackPlates = GetComponent<StackPlates>();
+        }
+
         public override void Interact(Interactor interactor)
         {
+            if (stackPlates.currentPlates == 0) return;
+
             var attachComponent = interactor.GetComponent<IAttach>();
 
             if (attachComponent != null)
@@ -21,6 +30,7 @@ namespace Counters
                 {
                     var go = Instantiate(platePrefab);
                     attachComponent.Attach(go);
+                    stackPlates.HidePlate();
                 }
             }
         }

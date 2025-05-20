@@ -1502,10 +1502,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 855109838}
     m_Modifications:
-    - target: {fileID: 648087943836525383, guid: e21b499d164095947b7559f0267f0e63, type: 3}
-      propertyPath: platePrefab
-      value: 
-      objectReference: {fileID: 3812876574508226177, guid: c0c9afd619b40914a8f625c0535e2284, type: 3}
     - target: {fileID: 4589716710238282922, guid: e21b499d164095947b7559f0267f0e63, type: 3}
       propertyPath: m_Name
       value: PlatesCounter_Visual
