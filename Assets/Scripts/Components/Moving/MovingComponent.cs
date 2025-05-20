@@ -20,9 +20,15 @@ namespace Components.Moving
         /// </summary>
         private Animator animator;
 
+        /// <summary>
+        /// Walking particles
+        /// </summary>
+        private ParticleSystem walkParticles;
+
         private void Start()
         {
             animator = GetComponent<Animator>();
+            walkParticles = GetComponent<ParticleSystem>();
         }
 
         // Update is called once per frame
@@ -42,12 +48,18 @@ namespace Components.Moving
 
                     // Play walking animation
                     animator.SetBool("IsWalking", true);
+
+                    // Play particles
+                    walkParticles.Play();
                 }
             }
             else // Otherwise
             {
                 // Play idle animation
                 animator.SetBool("IsWalking", false);
+
+                // Stop particles
+                walkParticles.Stop();
             }
         }
     }
