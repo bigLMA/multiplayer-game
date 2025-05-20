@@ -7,6 +7,7 @@ using DishContainer;
 using Dish;
 using System.Collections.Generic;
 using UnityEngine.Audio;
+using System.Collections;
 
 namespace Counters
 {
@@ -28,11 +29,15 @@ namespace Counters
 
         protected override void Start()
         {
+            // Bind on attach
             base.Start();
 
+            // Get source
             source = GetComponent<AudioSource>();
+            // Get given loop resource 
             sizzlingLoop = source.resource;
 
+            // Bind reset resource on attach
             var attach = GetComponent<AttachComponent>();
             attach.OnAttach += ResetSource;
         }
@@ -120,9 +125,19 @@ namespace Counters
 
         private void ResetSource()
         {
+            StartCoroutine(ResetSourceCoroutine());
+
+        }
+
+        private IEnumerator ResetSourceCoroutine()
+        {
+            // Wait until sound might play
+            yield return new WaitForSeconds(0.235f);
+
+            // Reset audio source
             source.Stop();
             source.resource = sizzlingLoop;
-
+            StopAllCoroutines();
         }
     }
 
