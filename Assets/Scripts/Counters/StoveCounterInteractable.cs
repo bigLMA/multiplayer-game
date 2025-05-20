@@ -132,7 +132,7 @@ namespace Counters
         private IEnumerator ResetSourceCoroutine()
         {
             // Wait until sound might play
-            yield return new WaitForSeconds(0.235f);
+            yield return new WaitForSeconds(0.14f);
 
             // Reset audio source
             source.Stop();
