@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -14,14 +15,26 @@ namespace Dish.Recipe
         [SerializeField]
         private RecipeListData recipeList;
 
-        private List<RecipeData> recipesAwaiting = new();
+        [SerializeField]
+        [Range(4f, 10f)]
+        private float recipeAddDelayMin = 5.5f;
+
+        [SerializeField]
+        [Range(7f, 15f)]
+        private float recipeAddDelayMax = 8f;
+
+        [SerializeField]
+        [Range(1f, 3f)]
+        private float initialDelay =1.2f;
+
+        public List<RecipeData> recipesAwaiting { get; set; } = new();
 
         public static RecipeManager instance { get; private set; }
 
         public int successful { get; private set; } = 0;
         public int failed { get; private set; } = 0;
 
-        private void Start()
+        private void Awake()
         {
             if (instance == null)
             {
@@ -34,6 +47,11 @@ namespace Dish.Recipe
                     Destroy(gameObject);
                 }
             }
+        }
+
+        private void Start()
+        {
+            StartCoroutine(AddOrderCoroutine());
         }
 
         public void CompareDish(IDish dish)
@@ -65,6 +83,22 @@ namespace Dish.Recipe
         {
             // todo comparing failed
             print($"Recipe manager - fail");
+        }
+
+        private void AddWaiting() => recipesAwaiting.Add(recipeList.GetRecipe());
+
+        private IEnumerator AddOrderCoroutine()
+        {
+            yield return new WaitForSeconds(initialDelay);
+
+            AddWaiting();
+
+            while(true)
+            {
+                var delay = Random.Range(recipeAddDelayMin, recipeAddDelayMax);
+                yield return new WaitForSeconds(delay);
+                AddWaiting();
+            }
         }
     }
 }
