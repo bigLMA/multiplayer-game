@@ -9,5 +9,7 @@ namespace Dish.Recipe
         public string recipeName;
 
         public List<string> recipe;
+
+        public bool containsMeat;
     }
 }
