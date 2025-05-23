@@ -9,5 +9,7 @@ namespace Dish
         void Add(DishProductBase product);
 
         void Destroy();
+
+        bool cooked { get; }
     }
 }

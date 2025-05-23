@@ -37,6 +37,8 @@ namespace Dish
 
         public Dictionary<string, int> dish { get; private set; } = new();
 
+        public bool cooked => cookedMeat.activeInHierarchy;
+
         private Dictionary<string, GameObject> dishMap;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
