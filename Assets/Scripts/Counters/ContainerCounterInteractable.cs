@@ -24,14 +24,16 @@ namespace Counters
         public override void OnLook()
         {
             base.OnLook();
-            counterOpener.transform.eulerAngles += new Vector3(openXAngle, 0f, 0f);
+
+            counterOpener.transform.localEulerAngles = new Vector3(openXAngle, 0, 0);
 
         }
 
         public override void OnNotLook()
         {
             base.OnNotLook();
-            counterOpener.transform.eulerAngles -= new Vector3(openXAngle, 0f, 0f);
+
+            counterOpener.transform.localEulerAngles = Vector3.zero;
         }
 
         public override void Interact(Interactor interactor)
