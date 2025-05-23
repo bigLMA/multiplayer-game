@@ -13,6 +13,12 @@ namespace Components.Moving
         [Range(1f, 15f)]
         private float speed = 6.5f;
 
+        [Header("Moving")]
+        [SerializeField]
+        [Tooltip("Turn speed")]
+        [Range(8f, 45f)]
+        private float turnSpeed = 20f;
+
         [SerializeField]
         [Tooltip("Sounds player make on movement")]
         private List<AudioResource> sounds;
@@ -51,14 +57,16 @@ namespace Components.Moving
             // If direction is set by player input
             if (direction != Vector2.zero)
             {
+                var desiredForward = new Vector3(direction.x, transform.forward.y, direction.y);
+
                 // Turn object toward new forward
-                transform.forward = new Vector3(direction.x, transform.forward.y, direction.y);
+                transform.forward = Vector3.Lerp(transform.forward, desiredForward, turnSpeed * Time.fixedDeltaTime);
 
                 // If object is not facing obstacle
                 if (!Physics.Raycast(transform.position + Vector3.up * 0.5f, transform.forward + Vector3.up * 0.5f, 0.5f))
                 {
                     // Translate object forward
-                    transform.Translate(0f, 0f, Time.deltaTime * speed);
+                    transform.Translate(0f, 0f, Time.fixedDeltaTime * speed);
 
                     // Play walking animation
                     animator.SetBool("IsWalking", true);
