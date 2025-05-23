@@ -16,12 +16,12 @@ namespace Dish.Recipe
         private RecipeListData recipeList;
 
         [SerializeField]
-        [Range(4f, 10f)]
-        private float recipeAddDelayMin = 5.5f;
+        [Range(8f, 15f)]
+        private float recipeAddDelayMin = 10f;
 
         [SerializeField]
-        [Range(7f, 15f)]
-        private float recipeAddDelayMax = 8f;
+        [Range(12f, 25f)]
+        private float recipeAddDelayMax = 22f;
 
         [SerializeField]
         [Range(1f, 3f)]
@@ -33,6 +33,10 @@ namespace Dish.Recipe
 
         public int successful { get; private set; } = 0;
         public int failed { get; private set; } = 0;
+
+        public delegate void CompareHandler();
+        public event CompareHandler OnCompareSuccess;
+        public event CompareHandler OnCompareFail;
 
         private void Awake()
         {
@@ -58,34 +62,42 @@ namespace Dish.Recipe
         {
             if(!dish.cooked)
             {
-                OnCompareFailed();
+                CompareFailed();
             }
 
             foreach(var r in recipesAwaiting)
             {
                 if (r.recipe.Except(dish.dish).Count()==0)
                 {
-                    OnCompareSuccess();
+                    CompareSuccess(r);
                     return;
                 }
             }
 
-            OnCompareFailed();
+            CompareFailed();
         }
 
-        private void OnCompareSuccess()
+        private void CompareSuccess(RecipeData recipe)
         {
             // todo comparing failed
-            print($"Recipe manager - success");
+            OnCompareSuccess?.Invoke();
+            recipesAwaiting.Remove(recipe);
+            //print($"Recipe manager - success");
         }
 
-        private void OnCompareFailed()
+        private void CompareFailed()
         {
             // todo comparing failed
-            print($"Recipe manager - fail");
+            OnCompareFail?.Invoke();
+            //print($"Recipe manager - fail");
         }
 
-        private void AddWaiting() => recipesAwaiting.Add(recipeList.GetRecipe());
+        private void AddWaiting()
+        {
+            recipesAwaiting.Add(recipeList.GetRecipe());
+
+            print(recipesAwaiting[recipesAwaiting.Count-1].recipeName);
+        }
 
         private IEnumerator AddOrderCoroutine()
         {

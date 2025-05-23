@@ -5,6 +5,9 @@ using DishContainer;
 using System.Collections;
 using Dish;
 using Dish.Recipe;
+using Misc.Sound;
+using System.Collections.Generic;
+using UnityEngine.Audio;
 
 namespace Counters
 {
@@ -13,8 +16,26 @@ namespace Counters
         [SerializeField]
         [Range(0.5f, 3f)]
         private float dishDestroyDelay = 1f;
-        
+
+        [SerializeField]
+        private List<AudioResource> deliverySounds;
+
         private bool evaluating = false;
+
+        private IPlaySound<string> playDeliverySound;
+
+        private AudioSource audioSource;    
+
+        protected override void Start()
+        {
+            base.Start();
+
+            audioSource = GetComponent<AudioSource>();
+            playDeliverySound = new PlayConcreteSoundOutOfSubset(audioSource, deliverySounds);
+
+            RecipeManager.instance.OnCompareSuccess += DisplaySuccess;
+            RecipeManager.instance.OnCompareFail += DisplayFail;
+        }
 
         public override void Interact(Interactor interactor)
         {
@@ -51,6 +72,16 @@ namespace Counters
             Destroy(go);
 
             evaluating= false;
+        }
+
+        private void DisplaySuccess()
+        {
+            playDeliverySound.Play("SFX_delivery_success");
+        }
+
+        private void DisplayFail()
+        {
+            playDeliverySound.Play("SFX_delivery_fail");
         }
     }
 }

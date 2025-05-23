@@ -6,4 +6,11 @@ namespace Misc.Sound
 
         void Stop();
     }
+
+    public interface IPlaySound<T>
+    {
+        void Play(T val);
+
+        void Stop();
+    }
 }
