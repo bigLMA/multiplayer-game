@@ -60,7 +60,7 @@ namespace Components.Moving
                 var desiredForward = new Vector3(direction.x, transform.forward.y, direction.y);
 
                 // Turn object toward new forward
-                transform.forward = Vector3.Lerp(transform.forward, desiredForward, turnSpeed * Time.fixedDeltaTime);
+                transform.forward = Vector3.Slerp(transform.forward, desiredForward, turnSpeed * Time.fixedDeltaTime);
 
                 // If object is not facing obstacle
                 if (!Physics.Raycast(transform.position + Vector3.up * 0.5f, transform.forward + Vector3.up * 0.5f, 0.5f))

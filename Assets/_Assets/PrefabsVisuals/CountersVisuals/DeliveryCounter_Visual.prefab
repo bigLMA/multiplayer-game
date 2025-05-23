@@ -249,6 +249,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
   - {fileID: 8300000, guid: 961379cce253f794abff0d24df806b68, type: 3}
   dishDestroyDelay: 1
+  deliverySounds:
+  - {fileID: 8300000, guid: 50205ffe58351d244bbcbd725dbfa802, type: 3}
+  - {fileID: 8300000, guid: 4b22bfbdbacfa0445bc9bbfbb0141085, type: 3}
+  - {fileID: 8300000, guid: 6a936576e1e30a640844535c71d5a149, type: 3}
+  - {fileID: 8300000, guid: 400611abd7434234993616a86c030d1e, type: 3}
 --- !u!114 &8866258915624006271
 MonoBehaviour:
   m_ObjectHideFlags: 0

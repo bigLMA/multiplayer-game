@@ -2823,8 +2823,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1615697827004840621, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+      propertyPath: speed
+      value: 4.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615697827004840621, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: turnSpeed
-      value: 19
+      value: 16.2
       objectReference: {fileID: 0}
     - target: {fileID: 1615697827004840621, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: sounds.Array.size
