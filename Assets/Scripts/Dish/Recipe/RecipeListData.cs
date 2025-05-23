@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Dish.Recipe
 {
+    [CreateAssetMenu(fileName = "recipeListData", menuName = "Custom/recipeListData")]
     public class RecipeListData : ScriptableObject
     {
         public List<RecipeData> recipes;
