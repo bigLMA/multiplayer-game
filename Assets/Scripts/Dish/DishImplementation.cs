@@ -1,5 +1,6 @@
 using Dish.FryProducts;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Dish
@@ -35,7 +36,7 @@ namespace Dish
         [Tooltip("Cabbage GO")]
         private GameObject cabbage;
 
-        public Dictionary<string, int> dish { get; private set; } = new();
+        public List<string> dish { get; private set; } = new();
 
         public bool cooked => cookedMeat.activeInHierarchy;
 
@@ -57,7 +58,10 @@ namespace Dish
         {
             if (product == null) return;
 
-            dish[product.GetName()] = dish.ContainsKey(product.GetName()) ? dish[product.GetName()] + 1 : 1;
+            bool contains = dish.Contains(product.GetName());
+
+            //dish[product.GetName()] = dish.ContainsKey(product.GetName()) ? dish[product.GetName()] + 1 : 1;
+            dish.Add(product.GetName());
 
             if (product.GetName().Equals("meat"))
             {
@@ -81,12 +85,10 @@ namespace Dish
                     Destroy(product.gameObject);
                     return;
                 }
-
-
-
             }
 
-            if (dish[product.GetName()] ==1)
+            //if (dish[product.GetName()] ==1)
+            if(!contains)
             {
                 dishMap[product.GetName()].SetActive(true);  
             }
