@@ -4,6 +4,7 @@ using Attach;
 using DishContainer;
 using System.Collections;
 using Dish;
+using Dish.Recipe;
 
 namespace Counters
 {
@@ -12,9 +13,6 @@ namespace Counters
         [SerializeField]
         [Range(0.5f, 3f)]
         private float dishDestroyDelay = 1f;
-
-        // TODO orders
-        ////////////
         
         private bool evaluating = false;
 
@@ -38,14 +36,15 @@ namespace Counters
         private IEnumerator DishDestroyCoroutine()
         {
             evaluating = true;
-            //TODO evaluate dish to orders
-            var attach = GetComponent<IAttach>();
-            if (attach.attachObject.TryGetComponent(out DishContainerBase container))
-            {
-               // var dish = container.dish;
-            }
 
             yield return new WaitForSeconds(dishDestroyDelay);
+
+            var attach = GetComponent<IAttach>();
+            
+            if(attach.attachObject.TryGetComponent(out DishContainerBase container))
+            {
+                RecipeManager.instance.CompareDish(container.dish);
+            }
 
             var go = attach.attachObject;
             attach.Detach();
