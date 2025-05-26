@@ -37,6 +37,10 @@ namespace Dish.Recipe
         public event CompareHandler OnCompareSuccess;
         public event CompareHandler OnCompareFail;
 
+        public delegate void RecipeHandler(RecipeData data);
+        public event RecipeHandler OnRecipeAdd;
+        public event RecipeHandler OnRecipeRemove;
+
         private void Awake()
         {
             if (instance == null)
@@ -78,22 +82,21 @@ namespace Dish.Recipe
 
         private void CompareSuccess(RecipeData recipe)
         {
-            // todo comparing failed
             OnCompareSuccess?.Invoke();
+            OnRecipeRemove?.Invoke(recipe);
             recipesAwaiting.Remove(recipe);
-            //print($"Recipe manager - success");
         }
 
         private void CompareFailed()
         {
-            // todo comparing failed
             OnCompareFail?.Invoke();
-            //print($"Recipe manager - fail");
         }
 
         private void AddWaiting()
         {
-            recipesAwaiting.Add(recipeList.GetRecipe());
+            var newRecipe = recipeList.GetRecipe();
+            OnRecipeAdd?.Invoke(newRecipe);
+            recipesAwaiting.Add(newRecipe);
 
             print(recipesAwaiting[recipesAwaiting.Count-1].recipeName);
         }
