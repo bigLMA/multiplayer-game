@@ -1,5 +1,6 @@
 using Attach;
 using Dish;
+using UI.Plate;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ namespace DishContainer
         [SerializeField]
         [Tooltip("Dish prefab")]
         private GameObject dishPrefab;
+
+        [SerializeField]
+        private PlateDisplay display;
 
         void Awake()
         {
@@ -26,6 +30,7 @@ namespace DishContainer
             if (dish != null)
             {
                 dish.Add(product);
+                display?.AddProduct(product.productData.image);
             }
         }
 
