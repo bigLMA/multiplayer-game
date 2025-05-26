@@ -36,7 +36,7 @@ namespace Dish
         [Tooltip("Cabbage GO")]
         private GameObject cabbage;
 
-        public List<string> dish { get; private set; } = new();
+        public List<DishProductData> dish { get; private set; } = new();
 
         public bool cooked => cookedMeat.activeInHierarchy;
 
@@ -58,12 +58,12 @@ namespace Dish
         {
             if (product == null) return;
 
-            bool contains = dish.Contains(product.GetName());
+            bool contains = dish.Contains(product.productData);
 
             //dish[product.GetName()] = dish.ContainsKey(product.GetName()) ? dish[product.GetName()] + 1 : 1;
-            dish.Add(product.GetName());
+            dish.Add(product.productData);
 
-            if (product.GetName().Equals("meat"))
+            if (product.productData.productName.Equals("meat"))
             {
                 if(product.TryGetComponent(out FryProductBase fryProduct))
                 {
@@ -90,7 +90,7 @@ namespace Dish
             //if (dish[product.GetName()] ==1)
             if(!contains)
             {
-                dishMap[product.GetName()].SetActive(true);  
+                dishMap[product.productData.productName].SetActive(true);  
             }
 
             Destroy(product.gameObject);

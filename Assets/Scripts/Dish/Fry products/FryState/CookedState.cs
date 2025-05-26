@@ -44,6 +44,8 @@ namespace Dish.FryProducts
         {
             cookedGO.SetActive(true);
 
+            parent.GetComponent<DishProductBase>().SetProductData(parent.cookedData);
+
             StartCooking();
         }
 
@@ -60,6 +62,7 @@ namespace Dish.FryProducts
 
             cookedGO.SetActive(false);
 
+            parent.GetComponent<DishProductBase>().SetProductData(parent.burnedData);
             parent.state = parent.burnedState;
             parent.state.Enter();
         }

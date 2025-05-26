@@ -4,7 +4,7 @@ namespace Dish
 {
     public interface IDish
     {
-        List<string> dish { get; }
+        List<DishProductData> dish { get; }
 
         void Add(DishProductBase product);
 

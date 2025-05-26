@@ -31,6 +31,12 @@ namespace Dish.FryProducts
         [SerializeField]
         private GameObject progressBarGO;
 
+        [field: SerializeField]
+        public DishProductData cookedData { get; private set; }
+
+        [field: SerializeField]
+        public DishProductData burnedData { get; private set; }
+
         public FryStateBase rawState { get; private set; }
         public FryStateBase cookedState { get; private set; } 
         public FryStateBase burnedState { get; private set; } 

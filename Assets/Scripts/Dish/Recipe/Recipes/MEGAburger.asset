@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: MEGAburger
   recipe:
-  - meat
-  - bread
-  - cheese
-  - cabbage
-  - tomato
+  - {fileID: 11400000, guid: 11d9fd53adb241743a499875bf35d91a, type: 2}
+  - {fileID: 11400000, guid: bcd97b8e6d78ad3469a4f302319d0f74, type: 2}
+  - {fileID: 11400000, guid: 59dbc31f74e65704281a739d2fe343ec, type: 2}
+  - {fileID: 11400000, guid: 1a525bac950427c4d8073aae641fee3f, type: 2}
+  - {fileID: 11400000, guid: 0d253b4e03552644ea3e8dd872e025b4, type: 2}

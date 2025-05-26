@@ -8,6 +8,6 @@ namespace Dish.Recipe
     {
         public string recipeName;
 
-        public List<string> recipe;
+        public List<DishProductData> recipe;
     }
 }

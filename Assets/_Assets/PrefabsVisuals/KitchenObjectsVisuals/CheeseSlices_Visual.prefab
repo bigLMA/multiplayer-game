@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3812876574508226176}
-  - component: {fileID: 8307907843266326282}
+  - component: {fileID: 590310754757834420}
   m_Layer: 0
   m_Name: CheeseSlices_Visual
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 6572846481745301892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8307907843266326282
+--- !u!114 &590310754757834420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,9 +44,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3812876574508226177}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90df62e7814b3ca4c84249052a3a6fdc, type: 3}
+  m_Script: {fileID: 11500000, guid: 32eb1e46fd77d3a4aa1e7b77f630e271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <productData>k__BackingField: {fileID: 11400000, guid: 0d253b4e03552644ea3e8dd872e025b4, type: 2}
 --- !u!1001 &4519783040888074352
 PrefabInstance:
   m_ObjectHideFlags: 0

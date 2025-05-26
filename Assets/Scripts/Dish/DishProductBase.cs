@@ -2,8 +2,11 @@ using UnityEngine;
 
 namespace Dish
 {
-    public abstract class DishProductBase : MonoBehaviour
+    public class DishProductBase : MonoBehaviour
     {
-        public abstract string GetName();
+        [field:SerializeField]
+        public DishProductData productData { get; private set; }
+
+        public void SetProductData(DishProductData productData) =>this.productData = productData;
     }
 }

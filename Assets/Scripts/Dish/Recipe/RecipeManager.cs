@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Dish.Recipe
@@ -60,14 +59,14 @@ namespace Dish.Recipe
 
         public void CompareDish(IDish dish)
         {
-            if(!dish.cooked)
+            if (!dish.cooked)
             {
                 CompareFailed();
             }
 
-            foreach(var r in recipesAwaiting)
+            foreach (var r in recipesAwaiting)
             {
-                if (r.recipe.Except(dish.dish).Count()==0)
+                if (r.recipe.Except(dish.dish).Count() == 0)
                 {
                     CompareSuccess(r);
                     return;
