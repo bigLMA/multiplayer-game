@@ -23,13 +23,17 @@ namespace UI.OrderList
 
         private void OnRecipeAdded(RecipeData data)
         {
-            // Добавитть в конец айтем
+            // Добавить в конец айтем
             var orderItem = Instantiate(orderItemPrefab, transform);
+            
+            // Передать ему инфу
         }
 
         private void OnRecipeRemoved(RecipeData data)
         {
+            // Убрать первый найденный айтем со схожей датой
 
+            // Перерисовать (зарепарентить) всю таблицу, либо саб систему
         }
     }
 }
