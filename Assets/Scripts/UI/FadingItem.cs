@@ -37,10 +37,6 @@ public class FadingItem : MonoBehaviour
 
         gameObject.SetActive(true);
 
-        if (gameObject == null) return;
-        if (this == null) return;
-        if (canvasGroup == null) return;
-
         canvasGroup.alpha = 1f;
         fade = true;
     }
