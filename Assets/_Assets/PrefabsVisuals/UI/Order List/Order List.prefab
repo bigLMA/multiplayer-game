@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5400721745522506469}
   - component: {fileID: 3003434643901817574}
   - component: {fileID: 7629894320702044969}
+  - component: {fileID: 6580786694837930098}
   m_Layer: 0
   m_Name: Order List
   m_TagString: Untagged
@@ -102,3 +103,16 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6580786694837930098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9053843875969099400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a01c0781eb02b49b1661dfdc5c7fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orderItemPrefab: {fileID: 2555234976237661634, guid: 0b5fd88a707c12a498ff7777e786a5f1, type: 3}
