@@ -6042,7 +6042,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1615697827004840621, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: speed
-      value: 4.85
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1615697827004840621, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: turnSpeed
@@ -6113,6 +6113,14 @@ PrefabInstance:
       value: PlayerVisual
       objectReference: {fileID: 0}
     - target: {fileID: 3635069246917816970, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635069246917816970, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 180.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635069246917816970, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: ClampVelocityModule.drag.scalar
       value: 9
       objectReference: {fileID: 0}
@@ -6123,6 +6131,18 @@ PrefabInstance:
     - target: {fileID: 3635069246917816970, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635069246917816970, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.21698111
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635069246917816970, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.21698111
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635069246917816970, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.21698111
       objectReference: {fileID: 0}
     - target: {fileID: 3635069246917816970, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: ClampVelocityModule.magnitude.scalar
