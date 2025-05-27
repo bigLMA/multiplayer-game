@@ -20,6 +20,11 @@ namespace Counters
         [SerializeField]
         private List<AudioResource> deliverySounds;
 
+        [SerializeField]
+        private FadingItem successImage;
+        [SerializeField]
+        private FadingItem failureImage;
+
         private bool evaluating = false;
 
         private IPlaySound<string> playDeliverySound;
@@ -77,11 +82,13 @@ namespace Counters
         private void DisplaySuccess()
         {
             playDeliverySound.Play("SFX_delivery_success");
+            successImage.Fade();
         }
 
         private void DisplayFail()
         {
             playDeliverySound.Play("SFX_delivery_fail");
+            failureImage.Fade();
         }
     }
 }

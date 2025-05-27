@@ -1,6 +1,7 @@
 using Dish.FryProducts;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Dish
@@ -38,7 +39,20 @@ namespace Dish
 
         public List<DishProductData> dish { get; private set; } = new();
 
-        public bool cooked => cookedMeat.activeInHierarchy;
+        public bool cooked 
+        {
+            get
+            {
+                var meat = dish.FirstOrDefault(x => x.productName.Equals("meat"));
+
+                if (meat==null)
+                {
+                    return true;
+                }
+
+                return cookedMeat.activeInHierarchy;
+            }
+        }
 
         private Dictionary<string, GameObject> dishMap;
 

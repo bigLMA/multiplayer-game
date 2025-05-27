@@ -97,8 +97,6 @@ namespace Dish.Recipe
             var newRecipe = recipeList.GetRecipe();
             OnRecipeAdd?.Invoke(newRecipe);
             recipesAwaiting.Add(newRecipe);
-
-            print(recipesAwaiting[recipesAwaiting.Count-1].recipeName);
         }
 
         private IEnumerator AddOrderCoroutine()
