@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ namespace UI.Network
         {
             GetComponent<Button>().onClick.AddListener(() =>
             {
-               // NetworkManager.Singleton.StartServer();
+                NetworkManager.Singleton.StartServer();
             });
         }
     }
