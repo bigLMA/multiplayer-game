@@ -12,16 +12,16 @@ namespace PlayerController.ControllableObject
         /// Pass move input for the controlled object
         /// </summary>
         /// <param name="direction">Normalised direction for moving and rotation</param>
-        public void OnMove(Vector2 direction);
+        public void OnMoveCall(Vector2 direction);
 
         /// <summary>
         /// Pass interact input for the controlled object
         /// </summary>
-        public void OnInteract();
+        public void OnInteractCall();
 
         /// <summary>
         /// Pass alternative interact input for the controlled object
         /// </summary>
-        public void OnAltInteract();
+        public void OnAltInteractCall();
     }
 }

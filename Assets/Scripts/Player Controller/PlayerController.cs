@@ -26,16 +26,16 @@ namespace PlayerController
         /// Message object ot move
         /// </summary>
         /// <param name="value">Input value</param>
-        void OnMove(InputValue value) => controllableObject?.OnMove(value.Get<Vector2>());
+        void OnMove(InputValue value) => controllableObject?.OnMoveCall(value.Get<Vector2>());
 
         /// <summary>
         /// Message object to interact
         /// </summary>
-        void OnInteract() => controllableObject?.OnInteract();
+        void OnInteract() => controllableObject?.OnInteractCall();
 
         /// <summary>
         /// Message object to alternative interact
         /// </summary>
-        void OnAltInteract()=>controllableObject?.OnAltInteract();
+        void OnAltInteract()=>controllableObject?.OnAltInteractCall();
     }
 }

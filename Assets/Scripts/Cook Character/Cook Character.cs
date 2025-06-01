@@ -17,16 +17,16 @@ namespace CookCharacter
             movingComponent = GetComponent<MovingComponent>();
         }
 
-        public void OnAltInteract()
+        public void OnAltInteractCall()
         {
             interactor.AltInteract();
         }
 
-        public void OnInteract()
+        public void OnInteractCall()
         {
             interactor.Interact();
         }
 
-        public void OnMove(Vector2 dir)=> movingComponent.direction = dir;
+        public void OnMoveCall(Vector2 dir)=> movingComponent.direction = dir;
     }
 }
