@@ -1,11 +1,12 @@
 using Misc.Sound;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Audio;
 
 namespace Components.Moving
 {
-    public class MovingComponent : MonoBehaviour
+    public class MovingComponent : NetworkBehaviour
     {
         [Header("Moving")]
         [SerializeField]
@@ -43,16 +44,41 @@ namespace Components.Moving
         /// </summary>
         private IPlaySound playSound;
 
-        private void Start()
+        public override void OnNetworkSpawn()
         {
+            base.OnNetworkSpawn();
+
             animator = GetComponent<Animator>();
             walkParticles = GetComponent<ParticleSystem>();
 
             playSound = new PlayRandomSound(GetComponent<AudioSource>(), sounds);
         }
 
-        // Update is called once per frame
-        void Update()
+        void FixedUpdate()
+        {
+           if(IsServer && IsLocalPlayer)
+            {
+                Move();
+            }
+           else if(IsLocalPlayer)
+            {
+                MoveServerRpc();
+            }
+        }
+
+        [ServerRpc]
+        private void MoveServerRpc()
+        {
+            NoveClientRpc();
+        }
+
+        [ClientRpc]
+        private void NoveClientRpc()
+        {
+            Move();
+        }
+
+        private void Move()
         {
             // If direction is set by player input
             if (direction != Vector2.zero)
