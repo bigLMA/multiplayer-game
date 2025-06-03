@@ -105,9 +105,21 @@ namespace Components.Moving
                 // Play idle animation
                 animator.SetBool("IsWalking", false);
 
-                // Stop particles
-                walkParticles.Stop();
+                StopParticlesServerRpc();
             }
+        }
+
+        [ServerRpc]
+        private void StopParticlesServerRpc()
+        {
+            StopParticlesClientRpc();
+        }
+
+        [ClientRpc]
+        private void StopParticlesClientRpc()
+        {
+            // Stop particles
+            walkParticles.Stop();
         }
 
         [ServerRpc]
