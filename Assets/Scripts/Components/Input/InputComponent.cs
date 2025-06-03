@@ -48,6 +48,29 @@ public class InputComponent : NetworkBehaviour
         {
             MoveServerRpc(moveVector);
         }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            if (IsServer && IsLocalPlayer)
+            {
+                controllableObject?.OnInteractCall();
+            }
+            else if (IsLocalPlayer)
+            {
+                InteractServerRpc();
+            }
+        }
+        else if(Input.GetMouseButtonDown(1))
+        {
+            if (IsServer && IsLocalPlayer)
+            {
+                controllableObject?.OnAltInteractCall();
+            }
+            else if (IsLocalPlayer)
+            {
+                AltInteractServerRpc();
+            }
+        }
     }
 
     [ServerRpc]
@@ -61,6 +84,18 @@ public class InputComponent : NetworkBehaviour
     {
         controllableObject?.OnMoveCall(moveVector.normalized);
     }
+
+    [ServerRpc]
+    private void InteractServerRpc() => InteractClientRpc();
+
+    [ClientRpc]
+    private void InteractClientRpc() => controllableObject?.OnInteractCall();
+
+    [ServerRpc]
+    private void AltInteractServerRpc() => AltInteractClientRpc();
+
+    [ClientRpc]
+    private void AltInteractClientRpc() => controllableObject?.OnAltInteractCall();
 
     ///// <summary>
     ///// Message object ot move
