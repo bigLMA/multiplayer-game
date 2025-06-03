@@ -97,7 +97,7 @@ namespace Interaction
         }
 
         [ServerRpc]
-        private void AltInteractServerRpc() => InteractClientRpc();
+        private void AltInteractServerRpc() => AltInteractClientRpc();
 
         [ClientRpc]
         private void AltInteractClientRpc() => interactable?.AltInteract();
