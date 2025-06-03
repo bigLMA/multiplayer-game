@@ -69,11 +69,11 @@ namespace Components.Moving
         [ServerRpc]
         private void MoveServerRpc()
         {
-            NoveClientRpc();
+            MoveClientRpc();
         }
 
         [ClientRpc]
-        private void NoveClientRpc()
+        private void MoveClientRpc()
         {
             Move();
         }
@@ -97,8 +97,7 @@ namespace Components.Moving
                     // Play walking animation
                     animator.SetBool("IsWalking", true);
 
-                    // Play particles
-                    walkParticles.Play();
+                    PlayParticlesServerRpc();
                 }
             }
             else // Otherwise
@@ -110,6 +109,21 @@ namespace Components.Moving
                 walkParticles.Stop();
             }
         }
+
+        [ServerRpc]
+        private void PlayParticlesServerRpc()
+        {
+            PlayParticlesClientRpc();
+        }
+
+        [ClientRpc]
+        private void PlayParticlesClientRpc()
+        {
+            // Play particles
+            walkParticles.Play();
+        }
+
+
 
         public void PlayWalkSound()=>playSound.Play();
     }
