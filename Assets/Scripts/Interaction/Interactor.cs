@@ -68,14 +68,15 @@ namespace Interaction
 
         public void Interact()
         {
-            if(IsServer&&IsLocalPlayer)
-            {
-                interactable?.Interact(this);
-            }
-            else if(IsLocalPlayer)
-            {
-                InteractServerRpc();
-            }
+            InteractServerRpc();
+            //if(IsServer&&IsLocalPlayer)
+            //{
+            //    interactable?.Interact(this);
+            //}
+            //else if(IsLocalPlayer)
+            //{
+            //    InteractServerRpc();
+            //}
         }
 
         [ServerRpc]
@@ -86,14 +87,15 @@ namespace Interaction
 
         public void AltInteract()
         {
-            if (IsServer && IsLocalPlayer)
-            {
-                interactable?.AltInteract();
-            }
-            else if (IsLocalPlayer)
-            {
-                AltInteractServerRpc();
-            }
+            AltInteractServerRpc();
+            //if (IsServer && IsLocalPlayer)
+            //{
+            //    interactable?.AltInteract();
+            //}
+            //else if (IsLocalPlayer)
+            //{
+            //    AltInteractServerRpc();
+            //}
         }
 
         [ServerRpc]

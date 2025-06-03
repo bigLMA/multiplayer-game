@@ -123,8 +123,6 @@ namespace Components.Moving
             walkParticles.Play();
         }
 
-
-
         public void PlayWalkSound()=>playSound.Play();
     }
 }
