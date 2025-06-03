@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngineInternal;
 
@@ -6,7 +7,7 @@ namespace Interaction
     /// <summary>
     /// Class component to encapsulate all work with iteractable objects
     /// </summary>
-    public class Interactor : MonoBehaviour
+    public class Interactor : NetworkBehaviour
     {
         /// <summary>
         /// current interactable object
@@ -22,18 +23,21 @@ namespace Interaction
         // Update is called once per frame
         void Update()
         {
+            CheckForInteractable();
+        }
+
+        private void CheckForInteractable()
+        {
             RaycastHit hit;
 
-            //Debug.DrawLine(gameObject.transform.position + new Vector3(0f, 0.5f), gameObject.transform.position + new Vector3(0f, 0.5f) + gameObject.transform.forward * interactRange, Color.blue);
-
             // Check in front of controllable object for interactibles
-            if(Physics.Raycast(transform.position + Vector3.up * 0.5f, transform.forward + Vector3.up * 0.5f, out hit, interactRange))
+            if (Physics.Raycast(transform.position + Vector3.up * 0.5f, transform.forward + Vector3.up * 0.5f, out hit, interactRange))
             {
                 //print("not raycast");
 
                 var newInteractable = hit.collider.gameObject.GetComponent<IInteractable>();
 
-                if(newInteractable != null)
+                if (newInteractable != null)
                 {
                     // Reset interactable and make necessary visual changes
                     interactable?.OnNotLook();
@@ -54,8 +58,6 @@ namespace Interaction
             }
             else
             {
-                //print("not raycast");
-
                 if (interactable != null)
                 {
                     interactable.OnNotLook();
@@ -64,8 +66,40 @@ namespace Interaction
             }
         }
 
-        public void Interact() => interactable?.Interact(this);
+        public void Interact()
+        {
+            if(IsServer&&IsLocalPlayer)
+            {
+                interactable?.Interact(this);
+            }
+            else if(IsLocalPlayer)
+            {
+                InteractServerRpc();
+            }
+        }
 
-        public void AltInteract()=> interactable?.AltInteract();
+        [ServerRpc]
+        private void InteractServerRpc() => InteractClientRpc();
+
+        [ClientRpc]
+        private void InteractClientRpc()=> interactable?.Interact(this);
+
+        public void AltInteract()
+        {
+            if (IsServer && IsLocalPlayer)
+            {
+                interactable?.AltInteract();
+            }
+            else if (IsLocalPlayer)
+            {
+                AltInteractServerRpc();
+            }
+        }
+
+        [ServerRpc]
+        private void AltInteractServerRpc() => InteractClientRpc();
+
+        [ClientRpc]
+        private void AltInteractClientRpc() => interactable?.AltInteract();
     }
 }
