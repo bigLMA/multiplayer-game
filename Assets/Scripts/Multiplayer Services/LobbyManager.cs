@@ -229,8 +229,6 @@ namespace MultiplayerServices
         {
             playerName = newPlayerName;
 
-            print(newPlayerName);
-
             if(joinedLobby!= null)
             {
                 try
