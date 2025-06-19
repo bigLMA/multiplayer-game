@@ -38,7 +38,7 @@ namespace MultiplayerServices
         private float lobbyPollTimer = 0f;
         private float refreshLobbyListTimer = 5f;
         public Lobby joinedLobby { get; private set; } = null;
-        private string playerName;
+        public string playerName { get; private set; }
 
         private void Awake()
         {
