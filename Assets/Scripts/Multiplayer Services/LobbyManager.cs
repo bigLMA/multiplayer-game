@@ -42,6 +42,7 @@ namespace MultiplayerServices
 
         private void Awake()
         {
+            Authenticate("Player");
             instance = this;
         }
 
@@ -85,6 +86,8 @@ namespace MultiplayerServices
 
         private async void HandleRefreshHeartbeat()
         {
+            if (joinedLobby == null) return;
+
             if(IsLobbyHost())
             {
                 heartbeatTimer -= Time.deltaTime;
@@ -224,7 +227,9 @@ namespace MultiplayerServices
 
         public async void UpdatePlayerName(string newPlayerName)
         {
-            playerName = playerName;
+            playerName = newPlayerName;
+
+            print(newPlayerName);
 
             if(joinedLobby!= null)
             {
