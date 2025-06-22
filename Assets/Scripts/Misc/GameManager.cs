@@ -1,3 +1,4 @@
+using Level;
 using MultiplayerServices;
 using System.Collections;
 using Unity.Netcode;
@@ -37,7 +38,13 @@ namespace Misc
         public void LoadScene(string levelName)
         {
             NetworkManager.Singleton.SceneManager.LoadScene(levelName, LoadSceneMode.Single);
+            NetworkManager.Singleton.SceneManager.OnLoadComplete += SceneManager_OnLoadComplete;
            // StartCoroutine(LoadSceneAsync(levelName));
+        }
+
+        private void SceneManager_OnLoadComplete(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
+        {
+            SpawnPoints.instance.RelocatePlayers();
         }
 
         public void Quit()
