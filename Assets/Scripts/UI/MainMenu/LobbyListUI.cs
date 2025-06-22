@@ -20,6 +20,7 @@ namespace UI.MainMenu
         [SerializeField]
         private Transform list;
 
+        [Header("List Item")]
         [SerializeField]
         private GameObject lobbyListUIItemPrefab;
 

@@ -42,7 +42,6 @@ namespace MultiplayerServices
 
         private void Awake()
         {
-            Authenticate("Player");
             instance = this;
         }
 
@@ -66,6 +65,7 @@ namespace MultiplayerServices
                 RefreshLobbyList();
             };
 
+            AuthenticationService.Instance.SwitchProfile(playerName);
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
 

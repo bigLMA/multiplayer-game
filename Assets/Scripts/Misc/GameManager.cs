@@ -1,4 +1,6 @@
+using MultiplayerServices;
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,11 +25,19 @@ namespace Misc
                     Destroy(instance.gameObject);
                 }
             }
+
+            LobbyManager.instance.OnGameStarted += LobyManager_OnGameStarted;
+        }
+
+        private void LobyManager_OnGameStarted(object sender, System.EventArgs e)
+        {
+            LoadScene("Gameplay");
         }
 
         public void LoadScene(string levelName)
         {
-            StartCoroutine(LoadSceneAsync(levelName));
+            NetworkManager.Singleton.SceneManager.LoadScene(levelName, LoadSceneMode.Single);
+           // StartCoroutine(LoadSceneAsync(levelName));
         }
 
         public void Quit()
