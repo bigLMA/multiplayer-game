@@ -1,9 +1,10 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Level
 {
-    public class EndLevel : MonoBehaviour
+    public class EndLevel : NetworkBehaviour
     {
         [field: SerializeField]
         [Tooltip("Level duration in minutes")]
@@ -12,41 +13,52 @@ namespace Level
 
         public float levelDurationSec { get; private set; }
 
-        public static EndLevel instance { get; private set; } =null;
+        public static EndLevel instance { get; private set; } = null;
 
         private void Start()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = this;
             }
             else
             {
-                if(instance!=this)
+                if (instance != this)
                 {
                     Destroy(gameObject);
                 }
             }
 
             levelDurationSec = levelDurationMins * 60f;
-            StartCoroutine(EndLevelCoroutine());
+
+            NetworkManager.SceneManager.OnLoadComplete += (a, b, c) =>
+            {
+                if (IsServer) StartCoroutine(EndLevelCoroutine());
+            };
         }
 
-        public void LevelEnd()
+        [Rpc(SendTo.ClientsAndHost)]
+        public void LevelEndRpc()
         {
             Time.timeScale = 0f;
         }
 
         private IEnumerator EndLevelCoroutine()
         {
-            while(levelDurationSec>0)
+            while (levelDurationSec > 0)
             {
                 yield return new WaitForFixedUpdate();
 
-                levelDurationSec -= Time.fixedDeltaTime;
+                TickTimerRpc();
             }
 
-            LevelEnd();
+            LevelEndRpc();
+        }
+
+        [Rpc(SendTo.ClientsAndHost)]
+        private void TickTimerRpc()
+        {
+            levelDurationSec -= Time.fixedDeltaTime;
         }
     }
 }
