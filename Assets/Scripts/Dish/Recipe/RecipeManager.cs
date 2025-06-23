@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Dish.Recipe
@@ -9,7 +10,7 @@ namespace Dish.Recipe
     /// Responsible for storing recipes, comparing with player dishes 
     /// and counting both successful and wrong player dishes
     /// </summary>
-    public class RecipeManager : MonoBehaviour
+    public class RecipeManager : NetworkBehaviour
     {
         [SerializeField]
         private RecipeListData recipeList;
@@ -58,7 +59,13 @@ namespace Dish.Recipe
 
         private void Start()
         {
-            StartCoroutine(AddOrderCoroutine());
+            NetworkManager.Singleton.SceneManager.OnLoadComplete += (clientId, sceneName, loadSceneMode) =>
+            {
+                if (IsServer)
+                {
+                    StartCoroutine(AddOrderCoroutine());
+                }
+            };
         }
 
         public void CompareDish(IDish dish)
@@ -92,9 +99,10 @@ namespace Dish.Recipe
             OnCompareFail?.Invoke();
         }
 
-        private void AddWaiting()
+        [Rpc(SendTo.ClientsAndHost)]
+        private void AddWaitingRpc(int rand)
         {
-            var newRecipe = recipeList.GetRecipe();
+            var newRecipe = recipeList.recipes[rand];
             OnRecipeAdd?.Invoke(newRecipe);
             recipesAwaiting.Add(newRecipe);
         }
@@ -103,13 +111,15 @@ namespace Dish.Recipe
         {
             yield return new WaitForSeconds(initialDelay);
 
-            AddWaiting();
+            var rand = Random.Range(0, recipeList.recipes.Count);
+            AddWaitingRpc(rand);
 
             while(true)
             {
                 var delay = Random.Range(recipeAddDelayMin, recipeAddDelayMax);
                 yield return new WaitForSeconds(delay);
-                AddWaiting();
+                rand = Random.Range(0, recipeList.recipes.Count);
+                AddWaitingRpc(rand);
             }
         }
     }

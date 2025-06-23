@@ -22,6 +22,11 @@ namespace Level
                 Destroy(gameObject);
                 return;
             }
+
+            NetworkManager.Singleton.SceneManager.OnLoadComplete += (clientId, sceneName, loadSceneMode) =>
+            {
+                RelocatePlayers();
+            };
         }
 
         private void NetworkManager_OnClientConnectedCallback(ulong id)
