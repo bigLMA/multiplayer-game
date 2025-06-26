@@ -31,9 +31,6 @@ namespace Dish.Recipe
 
         public static RecipeManager instance { get; private set; }
 
-        public int successful { get; private set; } = 0;
-        public int failed { get; private set; } = 0;
-
         public delegate void CompareHandler();
         public event CompareHandler OnCompareSuccess;
         public event CompareHandler OnCompareFail;

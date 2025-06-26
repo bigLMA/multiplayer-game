@@ -37,12 +37,13 @@ namespace MultiplayerServices
         private float heartbeatTimer = 0f;
         private float lobbyPollTimer = 0f;
         private float refreshLobbyListTimer = 5f;
-        public Lobby joinedLobby { get; private set; } = null;
+        public Lobby joinedLobby { get; private set; }
         public string playerName { get; private set; }
 
         private void Awake()
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Update()
@@ -100,6 +101,13 @@ namespace MultiplayerServices
             }
         }
 
+        public async void DestroyLobby()
+        {
+            if(joinedLobby == null || !IsLobbyHost()) return;
+
+            await LobbyService.Instance.DeleteLobbyAsync(joinedLobby.Id);
+        }
+
         private async void HandleRefreshPolling()
         {
             if (joinedLobby == null) return;
@@ -135,7 +143,7 @@ namespace MultiplayerServices
             }
         }
 
-        public bool IsLobbyHost()=> joinedLobby.HostId==AuthenticationService.Instance.PlayerId;
+        public bool IsLobbyHost() => joinedLobby.HostId == AuthenticationService.Instance.PlayerId;
 
         public bool IsPlayerInLobby()
         {
@@ -304,13 +312,15 @@ namespace MultiplayerServices
                 {
                     var relayCode = await RelayManager.instance.CreateRelay();
 
-                    var lobby = LobbyService.Instance.UpdateLobbyAsync(joinedLobby.Id, new()
+                    var lobby = await LobbyService.Instance.UpdateLobbyAsync(joinedLobby.Id, new()
                     {
                         Data = new()
                         {
                             [KEY_START_GAME] = new DataObject(DataObject.VisibilityOptions.Member, relayCode)
                         }
                     });
+
+                    joinedLobby = lobby;
                 }
                 catch (LobbyServiceException e)
                 {

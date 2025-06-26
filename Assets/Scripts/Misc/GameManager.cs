@@ -28,10 +28,10 @@ namespace Misc
                 }
             }
 
-            LobbyManager.instance.OnGameStarted += LobyManager_OnGameStarted;
+            LobbyManager.instance.OnGameStarted += LobbyManager_OnGameStarted;
         }
 
-        private void LobyManager_OnGameStarted(object sender, System.EventArgs e)
+        private void LobbyManager_OnGameStarted(object sender, System.EventArgs e)
         {
             LoadScene("Gameplay");
         }

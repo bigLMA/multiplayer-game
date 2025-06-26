@@ -1,3 +1,5 @@
+using Misc;
+using System;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -52,7 +54,8 @@ namespace Level
                 TickTimerRpc();
             }
 
-            LevelEndRpc();
+            GameManager.instance.LoadScene("Results");
+            //LevelEndRpc();
         }
 
         [Rpc(SendTo.ClientsAndHost)]
